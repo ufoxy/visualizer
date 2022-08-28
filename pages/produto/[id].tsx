@@ -31,19 +31,19 @@ const Produto: NextPage = ({ equipments }: any) => {
   return (
     <React.Fragment>
       <h1>oi: {query.id}</h1>
-      {/* <MenuLateral>
+      <MenuLateral>
         {equipments.map((e: any) =>
           <Link key={e.id} href={`${e.name}`} prefetch={false}>
             <li
               key={e.id}
-              // onClick={() => alert(e.id)}
+            // onClick={() => alert(e.id)}
             >
               {e.name}
             </li>
           </Link>
         )}
       </MenuLateral>
-      <h1>o id é: {query.id}</h1> */}
+      <h1>o id é: {query.id}</h1>
     </React.Fragment>
   )
 }
