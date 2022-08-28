@@ -1,10 +1,24 @@
 import { NextPage } from 'next'
 import React from 'react'
+import axios from 'axios'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
+export async function getStaticProps() {
+
+  const res = await axios.get('https://visualizer-blue.vercel.app/api/hello/')
+  .then((r) => r.data)
+  const props = res
+
+  return {
+    props: {props},
+  }
+}
+
+const Home: NextPage = ({ props }: any) => {
+  console.log(props)
+
   return (
     <React.Fragment>
       <div style={{
@@ -20,11 +34,11 @@ const Home: NextPage = () => {
           Hello World!
         </h1>
 
-        <ul 
-        style={{
-          listStyleType: 'none',
-          color: '#FFF'
-        }}
+        <ul
+          style={{
+            listStyleType: 'none',
+            color: '#FFF'
+          }}
         >
           <li>oi</li>
           <li>oi</li>
