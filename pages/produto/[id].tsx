@@ -1,12 +1,16 @@
 import React from 'react'
 import { NextPage } from 'next'
-import axios from 'axios'
-import MenuLateral from '../src/components/MenuLateral'
+import { useRouter } from 'next/router'
+import MenuLateral from '../../src/components/MenuLateral'
 import Link from 'next/link'
+import axios from 'axios'
 
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  }
+}
 
 export async function getStaticProps() {
 
@@ -20,13 +24,16 @@ export async function getStaticProps() {
   }
 }
 
-const Home: NextPage = ({ equipments }: any) => {
+const Produto: NextPage = ({ equipments }: any) => {
+
+  const { query } = useRouter()
 
   return (
     <React.Fragment>
-      <MenuLateral>
+      <h1>oi: {query.id}</h1>
+      {/* <MenuLateral>
         {equipments.map((e: any) =>
-          <Link key={e.id} href={`produto/${e.name}`} prefetch={false}>
+          <Link key={e.id} href={`${e.name}`} prefetch={false}>
             <li
               key={e.id}
               // onClick={() => alert(e.id)}
@@ -36,8 +43,9 @@ const Home: NextPage = ({ equipments }: any) => {
           </Link>
         )}
       </MenuLateral>
+      <h1>o id é: {query.id}</h1> */}
     </React.Fragment>
   )
 }
 
-export default Home
+export default Produto
