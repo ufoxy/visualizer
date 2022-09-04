@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import MenuLateral from '../../src/components/MenuLateral'
 import Link from 'next/link'
 import axios from 'axios'
+import Dashboard from '../../src/components/Dashboard'
 
 export async function getStaticPaths() {
   return {
@@ -46,7 +47,7 @@ const Produto: NextPage = ({ equipments }: any) => {
             </Link>
           )}
         </MenuLateral>
-        <h1>o id é: {query.id}</h1>
+        <Dashboard query={query} />
       </div>
     </React.Fragment>
   )
