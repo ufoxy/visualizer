@@ -7,7 +7,7 @@ function MenuLateral({ children }: any) {
       <div
         style={{
           backgroundColor: "#0B132B",
-          margin: "5px 0 5px 5px",
+          margin: "5px 5px 5px 5px",
           minWidth: "300px",
           maxWidth: "300px",
           height: "calc(100vh - 10px)",
