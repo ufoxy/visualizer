@@ -1,10 +1,10 @@
-import React from 'react'
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import MenuLateral from '../../src/components/MenuLateral'
-import Link from 'next/link'
-import axios from 'axios'
-import Dashboard from '../../src/components/Dashboard'
+import React from "react";
+import { NextPage } from "next";
+import { useRouter } from "next/router";
+import MenuLateral from "../../src/components/MenuLateral";
+import Link from "next/link";
+import axios from "axios";
+import Dashboard from "../../src/components/Dashboard";
 
 export async function getStaticPaths() {
   return {
@@ -17,15 +17,19 @@ export async function getStaticProps() {
   const equipment = await axios
     .get("https://visualizer-blue.vercel.app/api/equipment/")
     .then((e) => e.data);
+
   const equipmentModel = await axios
     .get("https://visualizer-blue.vercel.app/api/equipmentModel/")
     .then((e) => e.data);
+
   const equipmentPositionHistory = await axios
     .get("https://visualizer-blue.vercel.app/api/equipmentPositionHistory/")
     .then((e) => e.data);
+
   const equipmentStateHistory = await axios
     .get("https://visualizer-blue.vercel.app/api/equipmentStateHistory/")
     .then((e) => e.data);
+
   const equipmentState = await axios
     .get("https://visualizer-blue.vercel.app/api/equipmentState/")
     .then((e) => e.data);
@@ -46,15 +50,9 @@ const Produto: NextPage = ({
   equipmentModel,
   equipmentPositionHistory,
   equipmentStateHistory,
-  equipmentState
+  equipmentState,
 }: any) => {
   const { query } = useRouter();
-
-  // console.log(equipment);
-  // console.log(equipmentModel);
-  // console.log(equipmentPositionHistory);
-  // console.log(equipmentStateHistory);
-  // console.log(equipmentState);
 
   return (
     <React.Fragment>
@@ -66,7 +64,7 @@ const Produto: NextPage = ({
       >
         <MenuLateral>
           {equipment.map((e: any) => (
-            <Link key={e.id} href={`${e.name}`} prefetch={false}>
+            <Link key={e.id} href={`${e.id}`} prefetch={false}>
               <li
                 key={e.id}
                 // onClick={() => alert(e.id)}
@@ -76,7 +74,13 @@ const Produto: NextPage = ({
             </Link>
           ))}
         </MenuLateral>
-        <Dashboard />
+        <Dashboard
+          equipment={equipment}
+          equipmentModel={equipmentModel}
+          equipmentPositionHistory={equipmentPositionHistory}
+          equipmentStateHistory={equipmentStateHistory}
+          equipmentState={equipmentState}
+        />
       </div>
     </React.Fragment>
   );
