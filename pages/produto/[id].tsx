@@ -30,20 +30,24 @@ const Produto: NextPage = ({ equipments }: any) => {
 
   return (
     <React.Fragment>
-      <h1>oi: {query.id}</h1>
-      <MenuLateral>
-        {equipments.map((e: any) =>
-          <Link key={e.id} href={`${e.name}`} prefetch={false}>
-            <li
-              key={e.id}
-            // onClick={() => alert(e.id)}
-            >
-              {e.name}
-            </li>
-          </Link>
-        )}
-      </MenuLateral>
-      <h1>o id é: {query.id}</h1>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+      }}>
+        <MenuLateral>
+          {equipments.map((e: any) =>
+            <Link key={e.id} href={`${e.name}`} prefetch={false}>
+              <li
+                key={e.id}
+              // onClick={() => alert(e.id)}
+              >
+                {e.name}
+              </li>
+            </Link>
+          )}
+        </MenuLateral>
+        <h1>o id é: {query.id}</h1>
+      </div>
     </React.Fragment>
   )
 }
