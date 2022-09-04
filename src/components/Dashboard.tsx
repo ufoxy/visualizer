@@ -4,48 +4,13 @@ import Link from "next/link";
 import axios from "axios";
 import useGetEarningCalculatorById from "../hooks/getEarningCalculatorById";
 import useGetModel from "../hooks/getModel";
+import useGetProductivityPercentageById from "../hooks/getProductivityPercentageById";
 import useGetPositionById from "../hooks/getPositionById";
 import useGetStateById from "../hooks/getStateById";
 import useGetStatusClassById from "../hooks/getStatusClassById";
 import formatStringDate from "../utils/formatStringDate";
 
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-}
-
-export async function getStaticProps() {
-  const equipment = await axios
-    .get("https://visualizer-blue.vercel.app/api/equipment/")
-    .then((e) => e.data);
-  const equipmentModel = await axios
-    .get("https://visualizer-blue.vercel.app/api/equipmentModel/")
-    .then((e) => e.data);
-  const equipmentPositionHistory = await axios
-    .get("https://visualizer-blue.vercel.app/api/equipmentPositionHistory/")
-    .then((e) => e.data);
-  const equipmentStateHistory = await axios
-    .get("https://visualizer-blue.vercel.app/api/equipmentStateHistory/")
-    .then((e) => e.data);
-  const equipmentState = await axios
-    .get("https://visualizer-blue.vercel.app/api/equipmentState/")
-    .then((e) => e.data);
-
-  return {
-    props: {
-      equipment,
-      equipmentModel,
-      equipmentPositionHistory,
-      equipmentStateHistory,
-      equipmentState,
-    },
-  };
-}
-
 function Dashboard({
-  children,
   equipment,
   equipmentModel,
   equipmentPositionHistory,
@@ -53,6 +18,12 @@ function Dashboard({
   equipmentState,
 }: any) {
   const { query } = useRouter();
+
+  // console.log(equipment);
+  // console.log(equipmentModel);
+  // console.log(equipmentPositionHistory);
+  // console.log(equipmentStateHistory);
+  // console.log(equipmentState);
 
   return (
     <React.Fragment>
@@ -64,14 +35,14 @@ function Dashboard({
         }}
       >
         <div className="flex">
-          {/* <p>
+          <p>
             {`Percentual de Produtividade: ${useGetProductivityPercentageById(
               query.id,
               equipment,
               equipmentModel,
               equipmentStateHistory
             ).replace(".", ",")}%`}
-          </p> */}
+          </p>
           <p>
             {`Ganhos Gerados: R$${useGetEarningCalculatorById(
               query.id,
@@ -128,11 +99,3 @@ function Dashboard({
 }
 
 export default Dashboard;
-function useGetProductivityPercentageById(
-  id: any,
-  equipment: any,
-  equipmentModel: any,
-  equipmentStateHistory: any
-) {
-  throw new Error("Function not implemented.");
-}
