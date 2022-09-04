@@ -26,7 +26,7 @@ const Home: NextPage = ({ equipments }: any) => {
     <React.Fragment>
       <MenuLateral>
         {equipments.map((e: any) =>
-          <Link key={e.id} href={`produto/${e.name}`} prefetch={false}>
+          <Link key={e.id} href={`produto/${e.id}`} prefetch={false}>
             <li
               key={e.id}
               // onClick={() => alert(e.id)}
