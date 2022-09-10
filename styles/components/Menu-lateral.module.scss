@@ -1,0 +1,25 @@
+.section {
+  background-color: #0b132b;
+  margin: 5px 5px 5px 5px;
+  min-width: 300px;
+  max-width: 300px;
+  height: calc(100vh - 10px);
+  font-size: 24;
+  color: #3a506b;
+  position: relative;
+  overflow: hidden;
+}
+
+.ul {
+    list-style-type: none;
+    padding: 8px;
+    color: #FFF;
+}
+
+.button {
+  min-width: calc(300px - 16px);
+  min-height: 25px;
+  margin: 0 8px 25px 8px;
+  position: absolute;
+  bottom: 0;
+}

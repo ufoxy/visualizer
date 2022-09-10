@@ -1,7 +1,5 @@
 import React, { Children } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
-import axios from "axios";
 import useGetEarningCalculatorById from "../hooks/getEarningCalculatorById";
 import useGetModel from "../hooks/getModel";
 import useGetProductivityPercentageById from "../hooks/getProductivityPercentageById";
@@ -9,6 +7,8 @@ import useGetPositionById from "../hooks/getPositionById";
 import useGetStateById from "../hooks/getStateById";
 import useGetStatusClassById from "../hooks/getStatusClassById";
 import formatStringDate from "../utils/formatStringDate";
+
+import styles from "../../styles/components/Dashboard.module.scss"
 
 function Dashboard({
   equipment,
@@ -27,13 +27,7 @@ function Dashboard({
 
   return (
     <React.Fragment>
-      <div
-        style={{
-          width: "100%",
-          margin: "5px 5px 5px 0",
-          backgroundColor: "#3A506B",
-        }}
-      >
+      <section className={styles.section}>
         <div className="flex">
           <p>
             {`Percentual de Produtividade: ${useGetProductivityPercentageById(
@@ -93,7 +87,7 @@ function Dashboard({
           </p>
         </div>
         <h1>o id é: {query.id}</h1>
-      </div>
+      </section>
     </React.Fragment>
   );
 }
