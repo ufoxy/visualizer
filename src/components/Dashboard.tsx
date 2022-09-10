@@ -28,7 +28,7 @@ function Dashboard({
   return (
     <React.Fragment>
       <section className={styles.section}>
-        <div className="flex">
+        <div className={styles.flex}>
           <p>
             {`Percentual de Produtividade: ${useGetProductivityPercentageById(
               query.id,
@@ -48,7 +48,7 @@ function Dashboard({
               .replace(".", ",")}`}
           </p>
         </div>
-        <div className="flex">
+        <div className={styles.flex}>
           <p>
             {`Posição Atual: ${useGetPositionById(
               query.id,
@@ -62,7 +62,7 @@ function Dashboard({
             ).map((e: any) => formatStringDate(e.date))}`}
           </p>
         </div>
-        <div className="flex">
+        <div className={styles.flex}>
           <p>
             {`Status: `}
             <span
