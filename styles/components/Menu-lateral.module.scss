@@ -6,11 +6,11 @@
   height: calc(100vh - 10px);
   font-size: 24;
   color: #3a506b;
-  position: relative;
   overflow: hidden;
 }
 
 .scroll_navbar {
+  height: 620px;
   background-color: #F8F9FA;
   margin: 16px 8px;
   .ul {
@@ -20,6 +20,7 @@
     .li {
       padding: 8px 8px;
       margin:  12px 0;
+      border-radius: 3px;
       border: #3a506b solid 1px;
       cursor: pointer;
     }
@@ -40,6 +41,5 @@
   margin: 0 8px 25px 8px;
   border-radius: 3px;
   border: none;
-  position: absolute;
-  bottom: 0;
+  cursor: pointer;
 }
