@@ -62,18 +62,7 @@ const Produto: NextPage = ({
           flexDirection: "row",
         }}
       >
-        <MenuLateral>
-          {equipment.map((e: any) => (
-            <Link key={e.id} href={`${e.id}`} prefetch={false}>
-              <li
-                key={e.id}
-                // onClick={() => alert(e.id)}
-              >
-                {e.name}
-              </li>
-            </Link>
-          ))}
-        </MenuLateral>
+        <MenuLateral equipment={equipment} />
         <Dashboard
           equipment={equipment}
           equipmentModel={equipmentModel}
