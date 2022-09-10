@@ -24,7 +24,7 @@ const Home: NextPage = ({ equipment }: any) => {
 
   return (
     <React.Fragment>
-      <MenuLateral equipment={equipment} />
+      <MenuLateral equipment={equipment} path={'equipamento/'}/>
     </React.Fragment>
   )
 }
