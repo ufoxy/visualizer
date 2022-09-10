@@ -3,8 +3,7 @@ import Link from "next/link";
 
 import styles from "../../styles/components/Menu-lateral.module.scss"
 
-function MenuLateral({ equipment }: any) {
-  console.log(equipment)
+function MenuLateral({ equipment, path='' }: any) {
   return (
     <React.Fragment>
       <section className={styles.section}>
@@ -13,7 +12,7 @@ function MenuLateral({ equipment }: any) {
         <div className={styles.scroll_navbar}>
           <ul className={styles.ul}>
             {equipment.map((e: any) => (
-              <Link key={e.id} href={`${e.name}?id=${e.id}`} prefetch={false}>
+              <Link key={e.id} href={`${path}${e.name}?id=${e.id}`} prefetch={false}>
                 <li key={e.id} className={styles.li}>
                   {e.name}
                 </li>
