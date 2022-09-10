@@ -71,29 +71,30 @@ function Dashboard({
   return (
     <React.Fragment>
       <section className={styles.section}>
-        <h2>{`Nome: ${query.name}`}</h2>
-        <h3>{`Modelo: ${model}`}</h3>
-
-        <div className={styles.flex}>
-          <p>{`Percentual de Produtividade: ${productivityPercentage}%`}</p>
-          <p>{`Ganhos Gerados: R$${earnings}`}</p>
+        <div className={styles.info}>
+          <div className={styles.name_and_model_info}>
+            <h1>{`Nome: ${query.name}`}</h1>
+            <h2>{`Modelo: ${model}`}</h2>
+          </div>
+          <div className={styles.flex}>
+            <p className={styles.other_info}>{`Percentual de Produtividade: ${productivityPercentage}%`}</p>
+            <p className={styles.other_info}>{`Ganhos Gerados: R$${earnings}`}</p>
+          </div>
+          <div className={styles.flex}>
+            <p className={styles.other_info}>{`Posição Atual: ${position}`}</p>
+            <p className={styles.other_info}>{`Última Atualização: ${positionLastAtt}`}</p>
+          </div>
+          <div className={styles.flex}>
+            <p className={styles.other_info}>
+              {`Status: `}
+              <span
+                className={`circle-dot ${stateColor}`}
+              ></span>
+              {`${state}`}
+            </p>
+            <p className={styles.other_info}>{`Última Atualização: ${stateLastAtt}`}</p>
+          </div>
         </div>
-        <div className={styles.flex}>
-          <p>{`Posição Atual: ${position}`}</p>
-          <p>{`Última Atualização: ${positionLastAtt}`}</p>
-        </div>
-        <div className={styles.flex}>
-          <p>
-            {`Status: `}
-            <span
-              className={`circle-dot ${stateColor}`}
-            ></span>
-            {`${state}`}
-          </p>
-          <p>{`Última Atualização: ${stateLastAtt}`}</p>
-        </div>
-
-        <h1>o id é: {query.id}</h1>
       </section>
     </React.Fragment>
   );
