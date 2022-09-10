@@ -11,31 +11,20 @@ import styles from '../styles/Home.module.scss'
 export async function getStaticProps() {
 
   const res = await axios.get('https://visualizer-blue.vercel.app/api/equipment/')
-  const equipments = res.data
+  const equipment = res.data
 
   return {
     props: {
-      equipments,
+      equipment,
     },
   }
 }
 
-const Home: NextPage = ({ equipments }: any) => {
+const Home: NextPage = ({ equipment }: any) => {
 
   return (
     <React.Fragment>
-      <MenuLateral>
-        {equipments.map((e: any) =>
-          <Link key={e.id} href={`produto/${e.id}`} prefetch={false}>
-            <li
-              key={e.id}
-              // onClick={() => alert(e.id)}
-            >
-              {e.name}
-            </li>
-          </Link>
-        )}
-      </MenuLateral>
+      <MenuLateral equipment={equipment} />
     </React.Fragment>
   )
 }
