@@ -4,7 +4,6 @@ import Link from "next/link";
 import styles from "../../styles/components/Menu-lateral.module.scss"
 
 function MenuLateral({ equipment }: any) {
-  console.log(equipment)
   return (
     <React.Fragment>
       <section className={styles.section}>
