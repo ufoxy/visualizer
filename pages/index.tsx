@@ -33,6 +33,7 @@ export async function getStaticProps() {
 }
 
 const Home: NextPage = ({ equipment, equipmentPositionHistory }: any) => {
+  
   const MapWithNoSSR = dynamic(() => import("../src/components/Map"), {
     ssr: false
   });
