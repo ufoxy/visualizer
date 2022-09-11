@@ -2,10 +2,30 @@
   width: 100%;
   margin: 5px 5px 5px 0;
   background-color: #3A506B;
+  padding: 20px;
 }
 
 .flex {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.info {
+  background-color: #0b132b;
+  color: #FFF;
+  padding: 20px;
+  border: #FFF solid 1px;
+  .name_and_model_info {
+    padding-bottom: 25px;
+    h1 {
+      font-size: 22px;
+    }
+    h2 {
+      font-size: 18px;
+    }
+  }
+  .other_info {
+    padding-bottom: 20px;
+  }
 }
