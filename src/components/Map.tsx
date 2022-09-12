@@ -32,10 +32,10 @@ const Map = ({
       {useGetPosition(equipmentPositionHistory).map((e: any) => {
         const id = e.id;
         const equipmentName = equipment.find((x: any) => x.id === e.id).name;
-        const lastUpdate = formatStringDate(new Date(e.position.date));
         const model = useGetModel(id, equipment, equipmentModel)
-          .map((e: any) => e.name)
-          .join("");
+        .map((e: any) => e.name)
+        .join("");
+        const lastUpdate = formatStringDate(new Date(e.position.date));
         return (
           <Marker position={[e.position.lat, e.position.lon]} key={id}>
             <Popup>
