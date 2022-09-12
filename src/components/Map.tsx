@@ -18,7 +18,7 @@ const DEFAULT_CENTER = { lat: -19.151801, lon: -46.007759 };
 
 const Map = ({ equipment, equipmentPositionHistory, equipmentModel }: any) => {
 
-  function getModel(id:any, equipment:any, equipmentModel:any) {
+  function GetModel(id:any, equipment:any, equipmentModel:any) {
     useGetModel(id, equipment, equipmentModel).map((e: any) => e.name).join("")
   }
 
@@ -34,7 +34,7 @@ const Map = ({ equipment, equipmentPositionHistory, equipmentModel }: any) => {
         const id = e.id;
         const equipmentName = equipment.find((x: any) => x.id === e.id).name;
         const lastUpdate = formatStringDate(new Date(e.position.date));
-        const model = getModel(id, equipment, equipmentModel)
+        const model = GetModel(id, equipment, equipmentModel)
         return (
           <Marker position={[e.position.lat, e.position.lon]} key={id}>
             <Popup>
