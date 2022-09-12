@@ -17,6 +17,11 @@ const DEFAULT_CENTER = { lat: -19.151801, lon: -46.007759 };
 // Dark: https://api.mapbox.com/styles/v1/ufoxy/cl7xjyti800by15ryoins5lis/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw
 
 const Map = ({ equipment, equipmentPositionHistory, equipmentModel }: any) => {
+
+  function getModel(id:any, equipment:any, equipmentModel:any) {
+    useGetModel(id, equipment, equipmentModel).map((e: any) => e.name).join("")
+  }
+
   return (
     <MapContainer
       center={[DEFAULT_CENTER.lat, DEFAULT_CENTER.lon]}
@@ -29,11 +34,12 @@ const Map = ({ equipment, equipmentPositionHistory, equipmentModel }: any) => {
         const id = e.id;
         const equipmentName = equipment.find((x: any) => x.id === e.id).name;
         const lastUpdate = formatStringDate(new Date(e.position.date));
+        const model = getModel(id, equipment, equipmentModel)
         return (
           <Marker position={[e.position.lat, e.position.lon]} key={id}>
             <Popup>
               <p>{`Name: ${equipmentName}`}</p>
-              <p>{`Modelo: ${useGetModel(id, equipment, equipmentModel).map((e: any) => e.name).join("")}`}</p>
+              <p>{`Modelo: ${model}`}</p>
               <p>{`Ultima atualização: ${lastUpdate}`}</p>
               <Link href={`equipamento/${equipmentName}?id=${id}`}>
                 <button>Ver detalhe</button>
