@@ -19,7 +19,7 @@ const DEFAULT_CENTER = { lat: -19.151801, lon: -46.007759 };
 const Map = ({ equipment, equipmentPositionHistory, equipmentModel }: any) => {
 
   function GetModel(id:any, equipment:any, equipmentModel:any) {
-    useGetModel(id, equipment, equipmentModel).map((e: any) => e.name).join("")
+    return useGetModel(id, equipment, equipmentModel).map((e: any) => e.name).join("")
   }
 
   return (
