@@ -33,9 +33,6 @@ function MenuLateral({ equipment, path = "" }: any) {
             <li
               style={styleTest}
             ></li>
-            <li
-              style={styleTest}
-            ></li>
           </ul>
         </div>
 
