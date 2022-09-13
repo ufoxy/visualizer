@@ -10,7 +10,7 @@
 }
 
 .scroll_navbar {
-  height: 620px;
+  height: calc(100% - 118px);
   background-color: #e7e8ec;
   border: #3a506b solid 1px;
   border-radius: 5px;
