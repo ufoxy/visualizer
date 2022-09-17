@@ -1,6 +1,4 @@
-import React, { Children } from "react";
-import Link from "next/link";
-
+import React from "react";
 import styles from "../../styles/components/Menu-lateral.module.scss";
 import Button from "./Button/Button";
 import SearchBar from "./Search-bar/Search-bar";
