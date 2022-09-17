@@ -10,7 +10,7 @@ function MenuLateral({ equipment, path="" }: any) {
       <section className={styles.section}>
         <SearchBar />
         <ScrollNavBar equipment={equipment} path={path}></ScrollNavBar>
-        <Button children={"Mapa"} />
+        <Button>Mapa</Button>
       </section>
     </React.Fragment>
   );
