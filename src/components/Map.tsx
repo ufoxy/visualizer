@@ -26,7 +26,8 @@ const Map = ({ equipment, equipmentPositionHistory, equipmentModel }: any) => {
     <section className={styles.section}>
       <div className={styles.div}>
         <h1 className={styles.h1}>Visualizer</h1>
-        <i className="fa fa-github" style={{fontSize:"36px"}}></i>
+        <i className="fa fa-github" style={{fontSize:"32px"}}></i>
+        <i className="fa fa-gear" style={{fontSize:"32px", color:"white"}}></i>
       </div>
       <MapContainer
         center={[DEFAULT_CENTER.lat, DEFAULT_CENTER.lon]}
