@@ -23,35 +23,41 @@ const Map = ({ equipment, equipmentPositionHistory, equipmentModel }: any) => {
   }
 
   return (
-    <MapContainer
-      center={[DEFAULT_CENTER.lat, DEFAULT_CENTER.lon]}
-      zoom={14}
-      scrollWheelZoom={false}
-      className={styles.map}
-    >
-      <TileLayer url="https://api.mapbox.com/styles/v1/ufoxy/cl7xj9uzv003m14r3sxlfu4ni/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw" />
-      {useGetPosition(equipmentPositionHistory).map((e: any) => {
-        const id = e.id;
-        const equipmentName = equipment.find((x: any) => x.id === e.id).name;
-        const lastUpdate = formatStringDate(new Date(e.position.date));
-        const model = GetModel(id, equipment, equipmentModel)
-        return (
-          <Marker position={[e.position.lat, e.position.lon]} key={id}>
-            <Popup>
-              <p>{`Name: ${equipmentName}`}</p>
-              <p>{`Modelo: ${model}`}</p>
-              <p>{`Ultima atualização: ${lastUpdate}`}</p>
-              <Link href={`equipamento/${equipmentName}?id=${id}`}>
-                <button>Ver detalhe</button>
-              </Link>
-            </Popup>
-          </Marker>
-        );
-      })}
-      <Marker position={[-19.151801, -46.007759]} draggable={false}>
-        <Popup>Hey ! I live here</Popup>
-      </Marker>
-    </MapContainer>
+    <section className={styles.section}>
+      <div className={styles.div}>
+        <h1 className={styles.h1}>Visualizer</h1>
+        <i className="fa fa-github" style={{fontSize:"36px"}}></i>
+      </div>
+      <MapContainer
+        center={[DEFAULT_CENTER.lat, DEFAULT_CENTER.lon]}
+        zoom={14}
+        scrollWheelZoom={false}
+        className={styles.map}
+      >
+        <TileLayer url="https://api.mapbox.com/styles/v1/ufoxy/cl7xj9uzv003m14r3sxlfu4ni/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw" />
+        {useGetPosition(equipmentPositionHistory).map((e: any) => {
+          const id = e.id;
+          const equipmentName = equipment.find((x: any) => x.id === e.id).name;
+          const lastUpdate = formatStringDate(new Date(e.position.date));
+          const model = GetModel(id, equipment, equipmentModel)
+          return (
+            <Marker position={[e.position.lat, e.position.lon]} key={id}>
+              <Popup>
+                <p>{`Name: ${equipmentName}`}</p>
+                <p>{`Modelo: ${model}`}</p>
+                <p>{`Ultima atualização: ${lastUpdate}`}</p>
+                <Link href={`equipamento/${equipmentName}?id=${id}`}>
+                  <button>Ver detalhe</button>
+                </Link>
+              </Popup>
+            </Marker>
+          );
+        })}
+        <Marker position={[-19.151801, -46.007759]} draggable={false}>
+          <Popup>Hey ! I live here</Popup>
+        </Marker>
+      </MapContainer>
+    </section>
   );
 };
 

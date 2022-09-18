@@ -50,7 +50,6 @@ const Home: NextPage = ({ equipment, equipmentPositionHistory, equipmentModel }:
   return (
     <React.Fragment>
       <section className={styles.section}>
-        <h1 className={styles.h1}>teste</h1>
         <MenuLateral equipment={equipment} path={'equipamento/'} />
         <MapCaller equipment={equipment} equipmentPositionHistory={equipmentPositionHistory} equipmentModel={equipmentModel} />
       </section>
