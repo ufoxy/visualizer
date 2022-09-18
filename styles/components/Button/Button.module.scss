@@ -15,7 +15,7 @@
     cursor: pointer;
     display: inline-flex;
     font-family: "JetBrains Mono", monospace;
-    min-width: calc(300px - 16px);
+    min-width: calc(300px - 16px - 10px);
     min-height: 40px;
     padding-right: 220px;
     justify-content: center;
@@ -23,7 +23,7 @@
     list-style: none;
     overflow: hidden;
     padding-left: 16px;
-    margin: 16px 16px 25px 8px;
+    margin: 16px 16px 25px 12px;
     position: relative;
     text-align: left;
     text-decoration: none;
