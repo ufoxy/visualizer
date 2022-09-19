@@ -1,7 +1,8 @@
 .scroll_navbar {
     height: calc(100% - 118px - 16px);
-    background-color: #e7e8ec;
-    border: #3a506b solid 1px;
+    background-color: #2B2E44;
+    border: #292B3B solid 1px;
+    // #292B3B
     border-radius: 5px;
     margin: 0 10px;
     direction: rtl;
@@ -9,7 +10,7 @@
       height: 100%;
       list-style-type: none;
       padding: 4px 0;
-      color: #598cfd;
+      color: #fff;
       overflow-y: scroll;
       scrollbar-color: #d4aa70 #e4e4e4;
       transition: scrollbar-color 0.3s ease-out;
@@ -17,10 +18,13 @@
         padding: 12px 12px;
         margin: 6px 6px;
         border-radius: 3px;
+        border: #3a506bd6 1px solid;
+        // #3a506b #3a506bd6
         display: flex;
         justify-content: flex-end;
         cursor: pointer;
-        background-color: #fff;
+        background-color: #2B2E44;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
       }
       .li:hover {
         background-color: #e7e8ec;
