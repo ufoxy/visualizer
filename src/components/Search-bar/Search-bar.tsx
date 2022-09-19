@@ -4,7 +4,7 @@ function SearchBar() {
     return (
         <div className={styles.wrapper}>
         <div className={styles.searchBar}>
-          <input className={styles.searchQueryInput} type="text" name="searchQueryInput" placeholder="Search" />
+          <input className={styles.searchQueryInput} type="text" name="searchQueryInput" placeholder="Pesquisar" />
         </div>
       </div>
     );
