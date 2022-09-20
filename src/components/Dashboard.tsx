@@ -7,7 +7,8 @@ import useGetPositionById from "../hooks/getPositionById";
 import useGetStateById from "../hooks/getStateById";
 import useGetStatusClassById from "../hooks/getStatusClassById";
 import formatStringDate from "../utils/formatStringDate";
-
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import styles from "../../styles/components/Dashboard.module.scss"
 
 function Dashboard({
@@ -71,14 +72,17 @@ function Dashboard({
   return (
     <React.Fragment>
       <section className={styles.section}>
+
+      {/* <Tabs tabs={tabs}/> */}
+
         <div className={styles.info}>
           <div className={styles.name_and_model_info}>
             <h1>{`Nome: ${query.name}`}</h1>
             <h2>{`Modelo: ${model}`}</h2>
           </div>
           <div className={styles.flex}>
-            <p className={styles.other_info}>{`Percentual de Produtividade: ${productivityPercentage}%`}</p>
-            <p className={styles.other_info}>{`Ganhos Gerados: R$${earnings}`}</p>
+            {/* <p className={styles.other_info}>{`Percentual de Produtividade: ${productivityPercentage}%`}</p>
+            <p className={styles.other_info}>{`Ganhos Gerados: R$${earnings}`}</p> */}
           </div>
           <div className={styles.flex}>
             <p className={styles.other_info}>{`Posição Atual: ${position}`}</p>
@@ -93,6 +97,22 @@ function Dashboard({
               {`${state}`}
             </p>
             <p className={styles.other_info}>{`Última Atualização: ${stateLastAtt}`}</p>
+          </div>
+        </div>
+
+        <div className={styles.flex}>
+          <div className={styles.earnings}>
+            <h2>Ganhos</h2>
+            <h3>{`R$${earnings}`}</h3>
+          </div>
+          <div className={styles.productivity_percentage}>
+            <h2>Percentual de Produtividade</h2>
+            <div className={styles.productivity_percentage_div}>
+              <p>{`${productivityPercentage}%`}</p>
+              <div style={{width:'160px', padding:'25px 0', margin:'0'}}>
+                <CircularProgressbar value={parseFloat(productivityPercentage.replace(',', '.'))} text={`${productivityPercentage}%`} />
+              </div>
+            </div>
           </div>
         </div>
       </section>
