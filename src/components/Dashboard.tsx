@@ -73,7 +73,14 @@ function Dashboard({
     <React.Fragment>
       <section className={styles.section}>
 
-      {/* <Tabs tabs={tabs}/> */}
+        <div className={styles.tabs_div}>
+          <nav>
+            <ul className={styles.nav_ul}>
+              <li className={styles.different}>{query.name}</li>
+              <li className={styles.different}>Histórico</li>
+            </ul>
+          </nav>
+        </div>
 
         <div className={styles.info}>
           <div className={styles.name_and_model_info}>
