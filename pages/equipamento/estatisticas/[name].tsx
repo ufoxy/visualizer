@@ -2,7 +2,7 @@ import React from "react";
 import { NextPage } from "next";
 import axios from "axios";
 import MenuLateral from "../../../src/components/MenuLateral";
-import Historico from "../../../src/components/Historico";
+import Estatisticas from "../../../src/components/Estatisticas";
 
 export async function getStaticPaths() {
   return {
@@ -33,7 +33,7 @@ const Produto: NextPage = ({ equipment }: any) => {
         }}
       >
         <MenuLateral equipment={equipment} />
-        <Historico />
+        <Estatisticas />
       </div>
     </React.Fragment>
   );

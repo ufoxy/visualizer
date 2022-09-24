@@ -10,8 +10,9 @@ import formatStringDate from "../utils/formatStringDate";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import styles from "../../styles/components/Dashboard.module.scss"
-import Link from "next/link";
 import Tabs from "./Tabs/Tabs";
+import { BiNotepad } from "react-icons/bi";
+import { BsInfoCircle } from "react-icons/bs";
 
 function Dashboard({
   equipment,
@@ -70,21 +71,27 @@ function Dashboard({
     equipmentState
   ).map((e: any) => formatStringDate(e.date))
     // Última atualização de estado do equipamento em data e horário.
+  const dateFromState = useGetStateById(
+    query.id,
+    equipmentStateHistory,
+    equipmentState
+  ).map((e: any) => e.date)
+  const date = new Date(dateFromState[0]).toLocaleDateString()
+    // Data atual
 
   return (
     <React.Fragment>
       <section className={styles.section}>
-
         <Tabs />
-
         <div className={styles.info}>
-          <div className={styles.name_and_model_info}>
-            <h1>{`Nome: ${query.name}`}</h1>
-            <h2>{`Modelo: ${model}`}</h2>
+          <div className={styles.flex}>
+            <div className={styles.name_and_model_info}>
+              <h1>{`Nome: ${query.name}`}</h1>
+              <h2>{`Modelo: ${model}`}</h2>
+            </div>
+            <BiNotepad fontSize={63}/>
           </div>
           <div className={styles.flex}>
-            {/* <p className={styles.other_info}>{`Percentual de Produtividade: ${productivityPercentage}%`}</p>
-            <p className={styles.other_info}>{`Ganhos Gerados: R$${earnings}`}</p> */}
           </div>
           <div className={styles.flex}>
             <p className={styles.other_info}>{`Posição Atual: ${position}`}</p>
@@ -104,11 +111,11 @@ function Dashboard({
 
         <div className={styles.flex}>
           <div className={styles.earnings}>
-            <h2>Ganhos</h2>
-            <h3>{`R$${earnings}`}</h3>
+            <h2>Receita <abbr title={`Receita gerada hoje ${date}`}><BsInfoCircle className={styles.icon} /></abbr> </h2>
+            <h3><small className={styles.small}>R$</small>{`${earnings}`}</h3>
           </div>
           <div className={styles.productivity_percentage}>
-            <h2>Percentual de Produtividade</h2>
+            <h2>Percentual de Produtividade <abbr title="Fórmula: (Operações Produtivas) / 24 * 100"><BsInfoCircle className={styles.icon} /></abbr></h2>
             <div className={styles.productivity_percentage_div}>
               <p>{`${productivityPercentage}%`}</p>
               <div style={{width:'160px', padding:'25px 0', margin:'0'}}>
@@ -117,6 +124,9 @@ function Dashboard({
             </div>
           </div>
         </div>
+
+        <div style={{height: '120px'}}></div>
+
       </section>
     </React.Fragment>
   );
