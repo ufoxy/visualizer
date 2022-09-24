@@ -3,7 +3,7 @@ import Tabs from "./Tabs/Tabs";
 import styles from "../../styles/components/Historico.module.scss";
 import Developing from "./Developing";
 
-function Historico() {
+function Estatisticas() {
   return (
     <React.Fragment>
       <section className={styles.section}>
@@ -14,4 +14,4 @@ function Historico() {
   );
 }
 
-export default Historico;
+export default Estatisticas;
