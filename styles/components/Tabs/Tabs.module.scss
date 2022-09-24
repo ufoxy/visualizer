@@ -10,9 +10,13 @@
     list-style: none;
     padding: 8px 30px;
     .li{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
       border:none;
       position: relative;
-      color: #FFF;
+      color: #ffffff;
       cursor: pointer;
       transition: color 500ms;
     }
@@ -40,3 +44,4 @@
       left: 0;
     }
   }
+  
