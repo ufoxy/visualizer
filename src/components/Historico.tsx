@@ -2,8 +2,6 @@ import React from "react";
 import { useRouter } from "next/router";
 import Tabs from "./Tabs/Tabs";
 import styles from "../../styles/components/Historico.module.scss";
-import Image from "next/image";
-const gif = require("../assets/gifs/load-animation.gif") as string;
 import { TypeAnimation } from 'react-type-animation';
 
 function Historico() {
