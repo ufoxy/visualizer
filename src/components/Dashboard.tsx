@@ -10,6 +10,8 @@ import formatStringDate from "../utils/formatStringDate";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import styles from "../../styles/components/Dashboard.module.scss"
+import Link from "next/link";
+import Tabs from "./Tabs/Tabs";
 
 function Dashboard({
   equipment,
@@ -73,14 +75,7 @@ function Dashboard({
     <React.Fragment>
       <section className={styles.section}>
 
-        <div className={styles.tabs_div}>
-          <nav>
-            <ul className={styles.nav_ul}>
-              <li className={styles.different}>{query.name}</li>
-              <li className={styles.different}>Histórico</li>
-            </ul>
-          </nav>
-        </div>
+        <Tabs />
 
         <div className={styles.info}>
           <div className={styles.name_and_model_info}>

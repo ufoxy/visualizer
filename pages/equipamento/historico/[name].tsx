@@ -1,9 +1,10 @@
 import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import MenuLateral from "../../src/components/MenuLateral";
+import MenuLateral from "../../../src/components/MenuLateral";
 import axios from "axios";
-import Dashboard from "../../src/components/Dashboard";
+import Dashboard from "../../../src/components/Dashboard";
+import Historico from "../../../src/components/Historico";
 
 export async function getStaticPaths() {
   return {
@@ -62,13 +63,7 @@ const Produto: NextPage = ({
         }}
       >
         <MenuLateral equipment={equipment} />
-        <Dashboard
-          equipment={equipment}
-          equipmentModel={equipmentModel}
-          equipmentPositionHistory={equipmentPositionHistory}
-          equipmentStateHistory={equipmentStateHistory}
-          equipmentState={equipmentState}
-        />
+        <Historico />
       </div>
     </React.Fragment>
   );
