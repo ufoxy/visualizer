@@ -26,11 +26,11 @@ function Tabs() {
           </li>
           <li className={styles.li}>
            <AiOutlineLineChart fontSize={20.5} />
-            <Link href={`/equipamento/historico/${query.name}?id=${query.id}`}>Estatísticas</Link>
+            <Link href={`/equipamento/estatisticas/${query.name}?id=${query.id}`}>Estatísticas</Link>
           </li>
           <li className={styles.li}>
            <BiMessageSquareDetail fontSize={20.5} />
-            <Link href={`/equipamento/historico/${query.name}?id=${query.id}`}>Detalhes</Link>
+            <Link href={`/equipamento/detalhes/${query.name}?id=${query.id}`}>Detalhes</Link>
           </li>
         </ul>
       </nav>
