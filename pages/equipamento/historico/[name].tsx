@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
-import MenuLateral from "../../../src/components/MenuLateral";
 import axios from "axios";
+import MenuLateral from "../../../src/components/MenuLateral";
 import Historico from "../../../src/components/Historico";
 
 export async function getStaticPaths() {
