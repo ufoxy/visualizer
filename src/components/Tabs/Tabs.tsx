@@ -16,7 +16,7 @@ function Tabs() {
             <Link href={`/equipamento/${query.name}?id=${query.id}`}>{query.name}</Link>
           </li>
           <li className={styles.li}>
-            <Link href={`historico/${query.name}?id=${query.id}`}>Histórico</Link>
+            <Link href={`/equipamento/historico/${query.name}?id=${query.id}`}>Histórico</Link>
           </li>
         </ul>
       </nav>
