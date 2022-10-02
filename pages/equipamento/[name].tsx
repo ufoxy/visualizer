@@ -2,7 +2,6 @@ import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import MenuLateral from "../../src/components/MenuLateral";
-import Link from "next/link";
 import axios from "axios";
 import Dashboard from "../../src/components/Dashboard";
 

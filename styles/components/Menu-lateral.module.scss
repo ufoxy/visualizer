@@ -1,45 +1,12 @@
 .section {
-  background-color: #0b132b;
-  margin: 5px 5px 5px 5px;
+  background-color: #282A37;
   min-width: 300px;
   max-width: 300px;
-  height: calc(100vh - 10px);
-  font-size: 24;
-  color: #3a506b;
-  position: relative;
+  border-right: #5f66982f 2px solid;
+  // #5f6698
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  height: 100vh;
+  color: #fff;
   overflow: hidden;
-}
-
-.scroll_navbar {
-  background-color: #F8F9FA;
-  margin: 16px 8px;
-  .ul {
-    list-style-type: none;
-    padding: 8px;
-    color: #598CFD;
-    .li {
-      padding: 8px 8px;
-      margin:  12px 0;
-      border: #3a506b solid 1px;
-      cursor: pointer;
-    }
-    .li:hover {
-      background-color: #e7e8ec;
-    }
-}
-}
-
-.button {
-  background-color: #E2EDFA;
-  color: #598CFD;
-  min-width: calc(300px - 16px);
-  min-height: 40px;
-  padding-right: 220px;
-  font-size: 15px;
-  font-weight: 400;
-  margin: 0 8px 25px 8px;
-  border-radius: 3px;
-  border: none;
-  position: absolute;
-  bottom: 0;
+  font-family: "roboto", sans-serif;
 }
