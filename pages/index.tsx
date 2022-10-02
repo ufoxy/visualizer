@@ -6,10 +6,10 @@ import dynamic from "next/dynamic";
 import styles from '../styles/Home.module.scss'
 
 const DEFAULT_CENTER = [38.907132, -77.036546]
+console.log("Update do Vercel")
 
 export async function getStaticProps() {
 
-  console.log("Update do Vercel")
 
   const equipment = await axios
     .get("https://visualizer-blue.vercel.app/api/equipment/")
