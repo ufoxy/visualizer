@@ -8,7 +8,6 @@ function useGetProductivityPercentageById(
   equipmentModel: any,
   equipmentStateHistory: any
 ) {
-  
   let totalOperating = 0;
 
   const filterEquipment = equipmentStateHistory.filter(

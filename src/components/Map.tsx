@@ -17,17 +17,21 @@ const DEFAULT_CENTER = { lat: -19.151801, lon: -46.007759 };
 // Dark: https://api.mapbox.com/styles/v1/ufoxy/cl7xjyti800by15ryoins5lis/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw
 
 const Map = ({ equipment, equipmentPositionHistory, equipmentModel }: any) => {
-
-  function GetModel(id:any, equipment:any, equipmentModel:any) {
-    return useGetModel(id, equipment, equipmentModel).map((e: any) => e.name).join("")
+  function GetModel(id: any, equipment: any, equipmentModel: any) {
+    return useGetModel(id, equipment, equipmentModel)
+      .map((e: any) => e.name)
+      .join("");
   }
 
   return (
     <section className={styles.section}>
       <div className={styles.div}>
         <h1 className={styles.h1}>Visualizer</h1>
-        <i className="fa fa-github" style={{fontSize:"32px"}}></i>
-        <i className="fa fa-gear" style={{fontSize:"32px", color:"white"}}></i>
+        <i className="fa fa-github" style={{ fontSize: "32px" }}></i>
+        <i
+          className="fa fa-gear"
+          style={{ fontSize: "32px", color: "white" }}
+        ></i>
       </div>
       <MapContainer
         center={[DEFAULT_CENTER.lat, DEFAULT_CENTER.lon]}
@@ -40,7 +44,7 @@ const Map = ({ equipment, equipmentPositionHistory, equipmentModel }: any) => {
           const id = e.id;
           const equipmentName = equipment.find((x: any) => x.id === e.id).name;
           const lastUpdate = formatStringDate(new Date(e.position.date));
-          const model = GetModel(id, equipment, equipmentModel)
+          const model = GetModel(id, equipment, equipmentModel);
           return (
             <Marker position={[e.position.lat, e.position.lon]} key={id}>
               <Popup>

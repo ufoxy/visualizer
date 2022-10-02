@@ -1,7 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
 
-function useGetPosition(equipmentPositionHistory:any) {
-
+function useGetPosition(equipmentPositionHistory: any) {
   const timeArrayInNumber = equipmentPositionHistory.map((e: any) =>
     Math.max(...e.positions.map((e: any) => new Date(e.date).getTime()))
   );
