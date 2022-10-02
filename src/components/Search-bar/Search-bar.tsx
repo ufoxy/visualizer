@@ -1,13 +1,18 @@
-import styles from "../../../styles/components/Search-bar/Search-bar.module.scss"
+import styles from "../../../styles/components/Search-bar/Search-bar.module.scss";
 
 function SearchBar() {
-    return (
-        <div className={styles.wrapper}>
-        <div className={styles.searchBar}>
-          <input className={styles.searchQueryInput} type="text" name="searchQueryInput" placeholder="Pesquisar" />
-        </div>
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.searchBar}>
+        <input
+          className={styles.searchQueryInput}
+          type="text"
+          name="searchQueryInput"
+          placeholder="Pesquisar"
+        />
       </div>
-    );
+    </div>
+  );
 }
 
 export default SearchBar;

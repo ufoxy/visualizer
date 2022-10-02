@@ -8,7 +8,6 @@ function useGetEarningCalculatorById(
   equipmentStateHistory: any,
   equipment: any
 ) {
-  
   const filterEquipment = equipmentStateHistory.filter(
     (e: any) => e.equipmentId === id
   );
