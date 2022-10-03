@@ -8,23 +8,6 @@ const styleTest = {
 
 function ScrollNavBar({ equipment, path }: any) {
   return (
-    <div className={styles.scroll_navbar}>
-      <ul className={styles.ul}>
-        {equipment.map((e: any) => (
-          <Link
-            key={e.id}
-            href={`${path}${e.name}?id=${e.id}`}
-            prefetch={false}
-          >
-            <li key={e.id} className={styles.li}>
-              {e.name}
-            </li>
-          </Link>
-        ))}
-        <li style={styleTest}></li>
-        <li style={styleTest}></li>
-      </ul>
-    </div>
   );
 }
 
