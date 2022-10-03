@@ -42,7 +42,6 @@ function ScrollNavBar({ equipment, path }: any) {
         <li style={styleTest}></li>
       </ul>
     </div>
-  );
 }
 
 export default ScrollNavBar;

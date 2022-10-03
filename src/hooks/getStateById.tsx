@@ -1,17 +1,21 @@
-import * as React from 'react';
+import * as React from "react";
 import useGetState from "./getState";
 
-function useGetStateById(id: any, equipmentStateHistory: any, equipmentState: any) {
-  let stateDate = ''
+function useGetStateById(
+  id: any,
+  equipmentStateHistory: any,
+  equipmentState: any
+) {
+  let stateDate = "";
   const stateId = useGetState(equipmentStateHistory)
     .filter((e: any) => e.id === id)
     .map((e: any) => {
-      stateDate = e.states.date
-      return e.states.equipmentStateId
+      stateDate = e.states.date;
+      return e.states.equipmentStateId;
     })
-    .join('')
+    .join("");
   const state = equipmentState.filter((e: any) => e.id === stateId);
-  return [{date: stateDate, state: state}];
+  return [{ date: stateDate, state: state }];
 }
 
 export default useGetStateById;

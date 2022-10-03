@@ -1,7 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
 
-function useGetState(equipmentStateHistory:any) {
-
+function useGetState(equipmentStateHistory: any) {
   const timeArrayInNumber = equipmentStateHistory.map((e: any) =>
     Math.max(...e.states.map((e: any) => new Date(e.date).getTime()))
   );

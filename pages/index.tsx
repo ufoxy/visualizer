@@ -1,16 +1,13 @@
-import React from 'react'
-import { NextPage } from 'next'
-import axios from 'axios'
-import MenuLateral from '../src/components/MenuLateral'
+import React from "react";
+import { NextPage } from "next";
+import axios from "axios";
+import MenuLateral from "../src/components/MenuLateral";
 import dynamic from "next/dynamic";
-import styles from '../styles/Home.module.scss'
+import styles from "../styles/Home.module.scss";
 
-const DEFAULT_CENTER = [38.907132, -77.036546]
+const DEFAULT_CENTER = [38.907132, -77.036546];
 
 export async function getStaticProps() {
-
-  console.log("Update do Vercel")
-
   const equipment = await axios
     .get("https://visualizer-blue.vercel.app/api/equipment/")
     .then((e) => e.data);
@@ -23,7 +20,7 @@ export async function getStaticProps() {
     .get("https://visualizer-blue.vercel.app/api/equipmentModel/")
     .then((e) => e.data);
 
-    const equipmentStateHistory = await axios
+  const equipmentStateHistory = await axios
     .get("https://visualizer-blue.vercel.app/api/equipmentStateHistory/")
     .then((e) => e.data);
 
@@ -35,28 +32,45 @@ export async function getStaticProps() {
     props: {
       equipment,
       equipmentPositionHistory,
-      equipmentModel, 
+      equipmentModel,
     },
-  }
+  };
 }
 
-const Home: NextPage = ({ equipment, equipmentPositionHistory, equipmentModel }: any) => {
-
+const Home: NextPage = ({
+  equipment,
+  equipmentPositionHistory,
+  equipmentModel,
+}: any) => {
   const Map = dynamic(() => import("../src/components/Map"), {
-    ssr: false
+    ssr: false,
   });
-  function MapCaller({ equipment, equipmentPositionHistory, equipmentModel }: any) {
-    return <Map equipment={equipment} equipmentPositionHistory={equipmentPositionHistory} equipmentModel={equipmentModel} />
+  function MapCaller({
+    equipment,
+    equipmentPositionHistory,
+    equipmentModel,
+  }: any) {
+    return (
+      <Map
+        equipment={equipment}
+        equipmentPositionHistory={equipmentPositionHistory}
+        equipmentModel={equipmentModel}
+      />
+    );
   }
 
   return (
     <React.Fragment>
       <section className={styles.section}>
-        <MenuLateral equipment={equipment} path={'equipamento/'} />
-        <MapCaller equipment={equipment} equipmentPositionHistory={equipmentPositionHistory} equipmentModel={equipmentModel} />
+        <MenuLateral equipment={equipment} path={"equipamento/"} />
+        <MapCaller
+          equipment={equipment}
+          equipmentPositionHistory={equipmentPositionHistory}
+          equipmentModel={equipmentModel}
+        />
       </section>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
