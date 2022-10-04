@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import MenuLateral from "../../src/components/MenuLateral";
 import axios from "axios";
 import Dashboard from "../../src/components/Dashboard";
+import MenuLateralContext from "../../src/common/contexts/Menu-lateral";
+import DashboardContext from "../../src/common/contexts/Dashboard";
 
 export async function getStaticPaths() {
   return {
@@ -51,7 +53,7 @@ const Produto: NextPage = ({
   equipmentStateHistory,
   equipmentState,
 }: any) => {
-  const { query } = useRouter();
+  const path = "";
 
   return (
     <React.Fragment>
@@ -61,14 +63,20 @@ const Produto: NextPage = ({
           flexDirection: "row",
         }}
       >
-        <MenuLateral equipment={equipment} />
-        <Dashboard
-          equipment={equipment}
-          equipmentModel={equipmentModel}
-          equipmentPositionHistory={equipmentPositionHistory}
-          equipmentStateHistory={equipmentStateHistory}
-          equipmentState={equipmentState}
-        />
+        <MenuLateralContext.Provider value={{ equipment, path }}>
+          <MenuLateral />
+        </MenuLateralContext.Provider>
+        <DashboardContext.Provider
+          value={{
+            equipment,
+            equipmentModel,
+            equipmentPositionHistory,
+            equipmentStateHistory,
+            equipmentState,
+          }}
+        >
+          <Dashboard />
+        </DashboardContext.Provider>
       </div>
     </React.Fragment>
   );
