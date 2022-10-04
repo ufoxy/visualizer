@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import useGetEarningCalculatorById from "../hooks/getEarningCalculatorById";
 import useGetModel from "../hooks/getModel";
@@ -8,19 +8,21 @@ import useGetStateById from "../hooks/getStateById";
 import useGetStatusClassById from "../hooks/getStatusClassById";
 import formatStringDate from "../utils/formatStringDate";
 import { CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
-import styles from "../../styles/components/Dashboard.module.scss";
 import Tabs from "./Tabs/Tabs";
 import { BiNotepad } from "react-icons/bi";
 import { BsInfoCircle } from "react-icons/bs";
+import DashboardContext from "../common/contexts/Dashboard";
+import "react-circular-progressbar/dist/styles.css";
+import styles from "../../styles/components/Dashboard.module.scss";
 
-function Dashboard({
-  equipment,
-  equipmentModel,
-  equipmentPositionHistory,
-  equipmentStateHistory,
-  equipmentState,
-}: any) {
+function Dashboard() {
+  const {
+    equipment,
+    equipmentModel,
+    equipmentPositionHistory,
+    equipmentStateHistory,
+    equipmentState,
+  }: any = useContext(DashboardContext);
   const { query } = useRouter();
 
   const model = useGetModel(query.id, equipment, equipmentModel).map(

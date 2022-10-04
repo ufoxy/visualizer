@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import axios from "axios";
 import MenuLateral from "../../../src/components/MenuLateral";
 import Historico from "../../../src/components/Historico";
+import MenuLateralContext from "../../../src/common/contexts/Menu-lateral";
 
 export async function getStaticPaths() {
   return {
@@ -24,6 +25,8 @@ export async function getStaticProps() {
 }
 
 const Produto: NextPage = ({ equipment }: any) => {
+  const path = "";
+
   return (
     <React.Fragment>
       <div
@@ -32,7 +35,9 @@ const Produto: NextPage = ({ equipment }: any) => {
           flexDirection: "row",
         }}
       >
-        <MenuLateral equipment={equipment} />
+        <MenuLateralContext.Provider value={{ equipment, path }}>
+          <MenuLateral />
+        </MenuLateralContext.Provider>
         <Historico />
       </div>
     </React.Fragment>
