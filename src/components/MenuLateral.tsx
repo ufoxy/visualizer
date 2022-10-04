@@ -4,12 +4,12 @@ import Button from "./Button/Button";
 import SearchBar from "./Search-bar/Search-bar";
 import ScrollNavBar from "./Scroll-navbar/Scroll-navbar";
 
-function MenuLateral({ equipment, path = "" }: any) {
+function MenuLateral() {
   return (
     <React.Fragment>
       <section className={styles.section}>
         <SearchBar />
-        <ScrollNavBar equipment={equipment} path={path}></ScrollNavBar>
+        <ScrollNavBar></ScrollNavBar>
         <Button>Mapa</Button>
       </section>
     </React.Fragment>
