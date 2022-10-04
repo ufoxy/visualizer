@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import MenuLateralContext from "../../common/contexts/Menu-lateral";
 import styles from "../../../styles/components/Scroll-navbar/Scroll-navbar.module.scss";
 
 const styleTest = {
@@ -7,7 +9,9 @@ const styleTest = {
   padding: "50px 0",
 };
 
-function ScrollNavBar({ equipment, path }: any) {
+function ScrollNavBar() {
+  const { equipment, path }: any = useContext(MenuLateralContext);
+
   const { query } = useRouter();
   return (
     <div className={styles.scroll_navbar}>
