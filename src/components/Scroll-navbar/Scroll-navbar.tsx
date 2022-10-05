@@ -31,7 +31,7 @@ function ScrollNavBar() {
                 style={
                   activate
                     ? {
-                        borderLeft: "5px solid #3E98C7",
+                        borderLeft: "5px solid rgb(59, 186, 255)",
                         transition: "all 100ms",
                       }
                     : {}
