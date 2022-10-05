@@ -4,15 +4,16 @@ import styles from "../../../styles/components/Search-bar/Search-bar.module.scss
 import MenuLateralContext from "../../common/contexts/Menu-lateral";
 
 function SearchBar() {
-  const { ContextFunction }: any = useContext(MenuLateralContext);
-  // ContextFunction("Funciona!!!!");
+  const { searchFilter }: any = useContext(MenuLateralContext);
 
+  const [searchValue, setSearchValue] = useState("");
   function getSearch(e: any) {
     const value = e.target.value;
     setSearchValue(value);
-  };
-
-  const [searchValue, setSearchValue] = useState("");
+  }
+  function setFilterBySearchValue() {
+    searchFilter(searchValue);
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -24,7 +25,7 @@ function SearchBar() {
           placeholder="Pesquisar"
           onChange={getSearch}
         />
-        <button className={styles.button}>
+        <button className={styles.button} onClick={setFilterBySearchValue}>
           <BiSearchAlt fontSize={22} />
         </button>
       </div>
