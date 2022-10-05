@@ -1,3 +1,4 @@
+import { BiSearchAlt } from "react-icons/bi";
 import styles from "../../../styles/components/Search-bar/Search-bar.module.scss";
 
 function SearchBar() {
@@ -10,7 +11,7 @@ function SearchBar() {
           name="searchQueryInput"
           placeholder="Pesquisar"
         />
-        <button className={styles.button} />
+        <button className={styles.button}><BiSearchAlt fontSize={22}/></button>
       </div>
     </div>
   );
