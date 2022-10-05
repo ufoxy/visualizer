@@ -56,16 +56,23 @@ const Home: NextPage = ({
   }
 
   const path = "equipamento/";
-
-  function ContextFunction(comment: string) {
-    console.log(comment);
+  const [filteredEquipment, setFilteredEquipment] = useState([]);
+  function searchFilter(filterValue: string) {
+    if (filterValue == undefined || null) return;
+    setFilteredEquipment(
+      equipment.filter((e: any) =>
+        !filterValue
+          ? {}
+          : e.name.toLowerCase().includes(filterValue.toLowerCase())
+      )
+    );
   }
 
   return (
     <React.Fragment>
       <section className={styles.section}>
         <MenuLateralContext.Provider
-          value={{ equipment, path, ContextFunction }}
+          value={{ equipment, filteredEquipment, path, searchFilter }}
         >
           <MenuLateral />
         </MenuLateralContext.Provider>
