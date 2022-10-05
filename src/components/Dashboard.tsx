@@ -12,6 +12,7 @@ import Tabs from "./Tabs/Tabs";
 import { BiNotepad } from "react-icons/bi";
 import { BsInfoCircle } from "react-icons/bs";
 import DashboardContext from "../common/contexts/Dashboard";
+import PulsatingCircle from "./Pulsating-circle/Pulsating-circle";
 import "react-circular-progressbar/dist/styles.css";
 import styles from "../../styles/components/Dashboard.module.scss";
 
@@ -79,6 +80,11 @@ function Dashboard() {
   ).map((e: any) => e.date);
   const date = new Date(dateFromState[0]).toLocaleDateString();
   // Data atual
+  const statusClass = useGetStatusClassById(
+    query.id,
+    equipmentStateHistory,
+    equipmentState
+  );
 
   return (
     <React.Fragment>
@@ -100,11 +106,13 @@ function Dashboard() {
             >{`Última Atualização: ${positionLastAtt}`}</p>
           </div>
           <div className={styles.flex}>
-            <p className={styles.other_info}>
-              {`Status: `}
-              <span className={`circle-dot ${stateColor}`}></span>
-              {`${state}`}
-            </p>
+            <div className={styles.flex}>
+              <p className={styles.other_info}>
+                {`Status: `}
+                {`${state}`}
+              </p>
+              <PulsatingCircle color={statusClass} />
+            </div>
             <p
               className={styles.other_info}
             >{`Última Atualização: ${stateLastAtt}`}</p>

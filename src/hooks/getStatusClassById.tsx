@@ -10,11 +10,11 @@ function useGetStatusClassById(
     .map((e: any) => e.state.map((e: any) => e.name))
     .join("");
   if (stateName === "Operando") {
-    return "color-dot-operating";
+    return "#2ecc71";
   } else if (stateName === "Parado") {
-    return "color-dot-stopped";
+    return "#e74c3c";
   } else if (stateName === "Manutenção") {
-    return "color-dot-maintenance";
+    return "#f1c40f";
   } else return;
 }
 

@@ -10,6 +10,7 @@ function SearchBar() {
           name="searchQueryInput"
           placeholder="Pesquisar"
         />
+        <button className={styles.button} />
       </div>
     </div>
   );
