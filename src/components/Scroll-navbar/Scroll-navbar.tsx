@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import MenuLateralContext from "../../common/contexts/Menu-lateral";
 import styles from "../../../styles/components/Scroll-navbar/Scroll-navbar.module.scss";
 
@@ -10,13 +10,30 @@ const styleTest = {
 };
 
 function ScrollNavBar() {
-  const { equipment, path }: any = useContext(MenuLateralContext);
+  const { equipment, filteredEquipment, searchFilter, path }: any =
+    useContext(MenuLateralContext);
   const { query } = useRouter();
+
+  const [equip, setEquip] = useState([]);
+
+  useEffect(() => {
+    searchFilter("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setEquip(equipment);
+    if (filteredEquipment == undefined || null) {
+      setEquip(equipment);
+    } else {
+      setEquip(filteredEquipment);
+    }
+  }, [equipment, filteredEquipment]);
 
   return (
     <div className={styles.scroll_navbar}>
       <ul className={styles.ul}>
-        {equipment.map((e: any) => {
+        {equip.map((e: any) => {
           const name = e.name;
           const activate = name === query.name;
           return (
