@@ -11,8 +11,8 @@ const styleTest = {
 
 function ScrollNavBar() {
   const { equipment, path }: any = useContext(MenuLateralContext);
-
   const { query } = useRouter();
+
   return (
     <div className={styles.scroll_navbar}>
       <ul className={styles.ul}>
