@@ -57,10 +57,16 @@ const Home: NextPage = ({
 
   const path = "equipamento/";
 
+  function ContextFunction(comment: string) {
+    console.log(comment);
+  }
+
   return (
     <React.Fragment>
       <section className={styles.section}>
-        <MenuLateralContext.Provider value={{ equipment, path }}>
+        <MenuLateralContext.Provider
+          value={{ equipment, path, ContextFunction }}
+        >
           <MenuLateral />
         </MenuLateralContext.Provider>
         <MapContext.Provider
