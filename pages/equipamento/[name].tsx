@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import MenuLateral from "../../src/components/MenuLateral";
@@ -54,6 +54,17 @@ const Produto: NextPage = ({
   equipmentState,
 }: any) => {
   const path = "";
+  const [filteredEquipment, setFilteredEquipment] = useState([]);
+  function searchFilter(filterValue: string) {
+    if (filterValue == undefined || null) return;
+    setFilteredEquipment(
+      equipment.filter((e: any) =>
+        !filterValue
+          ? {}
+          : e.name.toLowerCase().includes(filterValue.toLowerCase())
+      )
+    );
+  }
 
   return (
     <React.Fragment>
@@ -63,7 +74,9 @@ const Produto: NextPage = ({
           flexDirection: "row",
         }}
       >
-        <MenuLateralContext.Provider value={{ equipment, path }}>
+        <MenuLateralContext.Provider
+          value={{ equipment, filteredEquipment, path, searchFilter }}
+        >
           <MenuLateral />
         </MenuLateralContext.Provider>
         <DashboardContext.Provider
