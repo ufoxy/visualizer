@@ -111,14 +111,13 @@ function Dashboard() {
                 {`Status: `}
                 {`${state}`}
               </p>
-              <PulsatingCircle color={statusClass} />
+              <PulsatingCircle color={statusClass ? statusClass : "white"} />
             </div>
             <p
               className={styles.other_info}
             >{`Última Atualização: ${stateLastAtt}`}</p>
           </div>
         </div>
-
         <div className={styles.flex}>
           <div className={styles.earnings}>
             <h2>
