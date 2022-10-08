@@ -26,7 +26,7 @@ function SearchBar() {
           onChange={getSearch}
         />
         <button className={styles.button} onClick={setFilterBySearchValue}>
-          <BiSearchAlt fontSize={22} />
+          <BiSearchAlt color="white" fontSize={22} />
         </button>
       </div>
     </div>
