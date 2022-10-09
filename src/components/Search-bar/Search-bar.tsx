@@ -13,7 +13,7 @@ function SearchBar() {
   function setFilterBySearchValue() {
     searchFilter(searchValue);
   }
-  
+
   return (
     <div className={styles.wrapper}>
       <div
