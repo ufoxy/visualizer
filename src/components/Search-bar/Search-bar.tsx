@@ -5,7 +5,6 @@ import MenuLateralContext from "../../common/contexts/Menu-lateral";
 
 function SearchBar() {
   const { searchFilter }: any = useContext(MenuLateralContext);
-
   const [searchValue, setSearchValue] = useState("");
   function getSearch(e: any) {
     const value = e.target.value;
@@ -14,7 +13,6 @@ function SearchBar() {
   function setFilterBySearchValue() {
     searchFilter(searchValue);
   }
-
   return (
     <div className={styles.wrapper}>
       <div
