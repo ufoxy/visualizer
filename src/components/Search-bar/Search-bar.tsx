@@ -17,7 +17,12 @@ function SearchBar() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.searchBar}>
+      <div
+        className={styles.searchBar}
+        onKeyDown={(e) => {
+          e.which === 13 ? setFilterBySearchValue() : {};
+        }}
+      >
         <input
           className={styles.searchQueryInput}
           type="text"
