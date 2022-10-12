@@ -46,7 +46,9 @@ const Produto: NextPage = ({ equipment }: any) => {
           flexDirection: "row",
         }}
       >
-        <MenuLateralContext.Provider value={{ equipment, filteredEquipment, path, searchFilter }}>
+        <MenuLateralContext.Provider
+          value={{ equipment, filteredEquipment, path, searchFilter }}
+        >
           <MenuLateral />
         </MenuLateralContext.Provider>
         <Estatisticas />
