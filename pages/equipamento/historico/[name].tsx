@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NextPage } from "next";
 import axios from "axios";
 import MenuLateral from "../../../src/components/MenuLateral";
@@ -26,6 +26,17 @@ export async function getStaticProps() {
 
 const Produto: NextPage = ({ equipment }: any) => {
   const path = "";
+  const [filteredEquipment, setFilteredEquipment] = useState([]);
+  function searchFilter(filterValue: string) {
+    if (filterValue == undefined || null) return;
+    setFilteredEquipment(
+      equipment.filter((e: any) =>
+        !filterValue
+          ? {}
+          : e.name.toLowerCase().includes(filterValue.toLowerCase())
+      )
+    );
+  }
 
   return (
     <React.Fragment>
@@ -35,7 +46,9 @@ const Produto: NextPage = ({ equipment }: any) => {
           flexDirection: "row",
         }}
       >
-        <MenuLateralContext.Provider value={{ equipment, path }}>
+        <MenuLateralContext.Provider
+          value={{ equipment, filteredEquipment, path, searchFilter }}
+        >
           <MenuLateral />
         </MenuLateralContext.Provider>
         <Historico />
