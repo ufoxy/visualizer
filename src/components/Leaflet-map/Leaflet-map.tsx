@@ -103,9 +103,13 @@ function LeafletMap() {
                       <p>{`Name: ${equipmentName}`}</p>
                       <p>{`Modelo: ${model}`}</p>
                       <p>{`Ultima atualização: ${lastUpdate}`}</p>
-                      <Link href={`equipamento/${equipmentName}?id=${id}`}>
-                        <button>Ver detalhe</button>
-                      </Link>
+                      <div className={styles.button_div}>
+                        <Link href={`equipamento/${equipmentName}?id=${id}`}>
+                          <button className={styles.button}>
+                            Ver detalhes
+                          </button>
+                        </Link>
+                      </div>
                     </Popup>
                   </Marker>
                 );
@@ -126,11 +130,17 @@ function LeafletMap() {
                 return (
                   <Marker position={[e.position.lat, e.position.lon]} key={id}>
                     <Popup>
-                      <p>{`Name: ${equipmentName}`}</p>
-                      <p>{`Modelo: ${model}`}</p>
-                      <p>{`Ultima atualização: ${lastUpdate}`}</p>
+                      <div className={styles.div}>
+                        <h2
+                          className={styles.h2}
+                        >{`Nome: ${equipmentName}`}</h2>
+                        <h3 className={styles.h3}>{`Modelo: ${model}`}</h3>
+                        <p
+                          className={styles.p}
+                        >{`Ultima atualização: ${lastUpdate}`}</p>
+                      </div>
                       <Link href={`equipamento/${equipmentName}?id=${id}`}>
-                        <button>Ver detalhe</button>
+                        <button className={styles.button}>Ver detalhes</button>
                       </Link>
                     </Popup>
                   </Marker>
