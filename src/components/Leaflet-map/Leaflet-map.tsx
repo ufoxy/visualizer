@@ -4,6 +4,8 @@ import {
   Marker,
   Popup,
   useMapEvents,
+  LayersControl,
+  LayerGroup,
 } from "react-leaflet";
 import useGetPosition from "../../hooks/getPosition";
 import useGetModel from "../../hooks/getModel";
@@ -21,6 +23,8 @@ import styles from "../../../styles/components/Leaflet-map/Leaflet-map.module.sc
 
 const DEFAULT_CENTER = { lat: -19.151801, lng: -46.007759 };
 const DEFAULT_ZOOM = 10;
+
+const { BaseLayer, Overlay } = LayersControl;
 
 function LeafletMap() {
   const { equipment, equipmentPositionHistory, equipmentModel }: any =
@@ -59,6 +63,10 @@ function LeafletMap() {
 
   const { query } = useRouter();
 
+  // Basic: https://api.mapbox.com/styles/v1/ufoxy/cl7xjsprk008t15lgay2bk8gf/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw
+  // Outdoors: https://api.mapbox.com/styles/v1/ufoxy/cl7xj9uzv003m14r3sxlfu4ni/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw
+  // Dark: https://api.mapbox.com/styles/v1/ufoxy/cl7xjyti800by15ryoins5lis/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw
+
   return (
     <div
       onChange={(e) => {
@@ -78,28 +86,59 @@ function LeafletMap() {
         minZoom={3}
         className={styles.map}
       >
-        <TileLayer url="https://api.mapbox.com/styles/v1/ufoxy/cl7xj9uzv003m14r3sxlfu4ni/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw" />
-        {useGetPosition(equipmentPositionHistory).map((e: any) => {
-          const id = e.id;
-          const equipmentName = equipment.find((x: any) => x.id === e.id).name;
-          const lastUpdate = formatStringDate(new Date(e.position.date));
-          const model = GetModel(id, equipment, equipmentModel);
-          return (
-            <Marker position={[e.position.lat, e.position.lon]} key={id}>
-              <Popup>
-                <p>{`Name: ${equipmentName}`}</p>
-                <p>{`Modelo: ${model}`}</p>
-                <p>{`Ultima atualização: ${lastUpdate}`}</p>
-                <Link href={`equipamento/${equipmentName}?id=${id}`}>
-                  <button>Ver detalhe</button>
-                </Link>
-              </Popup>
-            </Marker>
-          );
-        })}
-        <Marker position={[-19.151801, -46.007759]} draggable={false}>
-          <Popup>Hey ! I live here</Popup>
-        </Marker>
+        <LayersControl position="bottomleft">
+          <BaseLayer name="Ícone Padrão">
+            <LayerGroup>
+              <TileLayer url="https://api.mapbox.com/styles/v1/ufoxy/cl7xj9uzv003m14r3sxlfu4ni/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw" />
+              {useGetPosition(equipmentPositionHistory).map((e: any) => {
+                const id = e.id;
+                const equipmentName = equipment.find(
+                  (x: any) => x.id === e.id
+                ).name;
+                const lastUpdate = formatStringDate(new Date(e.position.date));
+                const model = GetModel(id, equipment, equipmentModel);
+                return (
+                  <Marker position={[e.position.lat, e.position.lon]} key={id}>
+                    <Popup>
+                      <p>{`Name: ${equipmentName}`}</p>
+                      <p>{`Modelo: ${model}`}</p>
+                      <p>{`Ultima atualização: ${lastUpdate}`}</p>
+                      <Link href={`equipamento/${equipmentName}?id=${id}`}>
+                        <button>Ver detalhe</button>
+                      </Link>
+                    </Popup>
+                  </Marker>
+                );
+              })}
+            </LayerGroup>
+          </BaseLayer>
+
+          <BaseLayer checked name="Ícone Customizado">
+            <LayerGroup>
+              <TileLayer url="https://api.mapbox.com/styles/v1/ufoxy/cl7xj9uzv003m14r3sxlfu4ni/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw" />
+              {useGetPosition(equipmentPositionHistory).map((e: any) => {
+                const id = e.id;
+                const equipmentName = equipment.find(
+                  (x: any) => x.id === e.id
+                ).name;
+                const lastUpdate = formatStringDate(new Date(e.position.date));
+                const model = GetModel(id, equipment, equipmentModel);
+                return (
+                  <Marker position={[e.position.lat, e.position.lon]} key={id}>
+                    <Popup>
+                      <p>{`Name: ${equipmentName}`}</p>
+                      <p>{`Modelo: ${model}`}</p>
+                      <p>{`Ultima atualização: ${lastUpdate}`}</p>
+                      <Link href={`equipamento/${equipmentName}?id=${id}`}>
+                        <button>Ver detalhe</button>
+                      </Link>
+                    </Popup>
+                  </Marker>
+                );
+              })}
+            </LayerGroup>
+          </BaseLayer>
+        </LayersControl>
         <LocationMarker />
       </MapContainer>
     </div>
