@@ -77,7 +77,11 @@ const Home: NextPage = ({
           <MenuLateral />
         </MenuLateralContext.Provider>
         <MapContext.Provider
-          value={{ equipment, equipmentPositionHistory, equipmentModel }}
+          value={{
+            equipment,
+            equipmentPositionHistory,
+            equipmentModel,
+          }}
         >
           <MapCaller />
         </MapContext.Provider>
