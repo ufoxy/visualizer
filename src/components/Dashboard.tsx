@@ -11,10 +11,12 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import Tabs from "./Tabs/Tabs";
 import { BiNotepad } from "react-icons/bi";
 import { BsInfoCircle } from "react-icons/bs";
+import { TbMapSearch } from "react-icons/tb";
 import DashboardContext from "../common/contexts/Dashboard";
 import PulsatingCircle from "./Pulsating-circle/Pulsating-circle";
 import "react-circular-progressbar/dist/styles.css";
 import styles from "../../styles/components/Dashboard.module.scss";
+import Link from "next/link";
 
 function Dashboard() {
   const {
@@ -85,6 +87,12 @@ function Dashboard() {
     equipmentStateHistory,
     equipmentState
   );
+  // Classe de estilos do Status
+  const urlPosition = useGetPositionById(
+    query.id,
+    equipmentPositionHistory
+  ).map((e: any) => `/?lat=${e.position.lat}&lng=${e.position.lon}&zm=14`)[0];
+  // Url com a posição do equipamento para ir até a posição no mapa
 
   return (
     <React.Fragment>
@@ -100,7 +108,14 @@ function Dashboard() {
           </div>
           <div className={styles.flex}></div>
           <div className={styles.flex}>
-            <p className={styles.other_info}>{`Posição Atual: ${position}`}</p>
+            <p className={styles.other_info}>
+              <div className={styles.flex} style={{ gap: "6px" }}>
+                {`Posição Atual: ${position}`}
+                <Link href={`${urlPosition}`}>
+                  <TbMapSearch className={styles.map_search_icon} />
+                </Link>
+              </div>
+            </p>
             <p
               className={styles.other_info}
             >{`Última Atualização: ${positionLastAtt}`}</p>
