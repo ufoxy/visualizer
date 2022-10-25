@@ -6,21 +6,25 @@
 }
 
 .div {
-  padding: 5px 0 5px 0;
+  padding: 8px 0 8px 0;
 }
 
 .h2 {
   font-size: 16px;
   font-weight: 400;
+  padding-bottom: 2px;
+  font-family: 'roboto' sans-serif;
 }
 
 .h3 {
   font-size: 14px;
   font-weight: 400;
+  font-family: 'roboto' sans-serif;
 }
 
 .p {
   font-weight: 400;
+  font-family: 'roboto' sans-serif;
 }
 
 .button {
@@ -36,7 +40,7 @@
   display: inline-block;
   font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.15385;
   outline: none;
   padding: 8px .8em;
