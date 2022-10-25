@@ -91,7 +91,7 @@ function Dashboard() {
   const urlPosition = useGetPositionById(
     query.id,
     equipmentPositionHistory
-  ).map((e: any) => `/?lat=${e.position.lat}&lng=${e.position.lon}&zm=14`)[0];
+  ).map((e: any) => `/?lat=${e.position.lat}&lng=${e.position.lon}&zm=15`)[0];
   // Url com a posição do equipamento para ir até a posição no mapa
 
   return (
