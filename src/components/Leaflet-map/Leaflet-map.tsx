@@ -26,6 +26,10 @@ const DEFAULT_ZOOM = 10;
 
 const { BaseLayer, Overlay } = LayersControl;
 
+// Basic: https://api.mapbox.com/styles/v1/ufoxy/cl7xjsprk008t15lgay2bk8gf/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw
+// Outdoors: https://api.mapbox.com/styles/v1/ufoxy/cl7xj9uzv003m14r3sxlfu4ni/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw
+// Dark: https://api.mapbox.com/styles/v1/ufoxy/cl7xjyti800by15ryoins5lis/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw
+
 function LeafletMap() {
   const { equipment, equipmentPositionHistory, equipmentModel }: any =
     useContext(MapContext);
@@ -63,10 +67,6 @@ function LeafletMap() {
 
   const { query } = useRouter();
 
-  // Basic: https://api.mapbox.com/styles/v1/ufoxy/cl7xjsprk008t15lgay2bk8gf/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw
-  // Outdoors: https://api.mapbox.com/styles/v1/ufoxy/cl7xj9uzv003m14r3sxlfu4ni/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw
-  // Dark: https://api.mapbox.com/styles/v1/ufoxy/cl7xjyti800by15ryoins5lis/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw
-
   return (
     <div
       onChange={(e) => {
@@ -87,65 +87,46 @@ function LeafletMap() {
         className={styles.map}
       >
         <LayersControl position="bottomleft">
-          <BaseLayer name="Ícone Padrão">
+          <BaseLayer name="Outdoors Layer" checked>
             <LayerGroup>
               <TileLayer url="https://api.mapbox.com/styles/v1/ufoxy/cl7xj9uzv003m14r3sxlfu4ni/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw" />
-              {useGetPosition(equipmentPositionHistory).map((e: any) => {
-                const id = e.id;
-                const equipmentName = equipment.find(
-                  (x: any) => x.id === e.id
-                ).name;
-                const lastUpdate = formatStringDate(new Date(e.position.date));
-                const model = GetModel(id, equipment, equipmentModel);
-                return (
-                  <Marker position={[e.position.lat, e.position.lon]} key={id}>
-                    <Popup>
-                      <p>{`Name: ${equipmentName}`}</p>
-                      <p>{`Modelo: ${model}`}</p>
-                      <p>{`Ultima atualização: ${lastUpdate}`}</p>
-                      <div className={styles.button_div}>
-                        <Link href={`equipamento/${equipmentName}?id=${id}`}>
-                          <button className={styles.button}>
-                            Ver detalhes
-                          </button>
-                        </Link>
-                      </div>
-                    </Popup>
-                  </Marker>
-                );
-              })}
-            </LayerGroup>
-          </BaseLayer>
-
-          <BaseLayer checked name="Ícone Customizado">
-            <LayerGroup>
-              <TileLayer url="https://api.mapbox.com/styles/v1/ufoxy/cl7xj9uzv003m14r3sxlfu4ni/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWZveHkiLCJhIjoiY2w3d2hsOTlsMGhvNTN2b2F5bHlhNGU2bSJ9.ux0VWarP69sXVXtiHXOjkw" />
-              {useGetPosition(equipmentPositionHistory).map((e: any) => {
-                const id = e.id;
-                const equipmentName = equipment.find(
-                  (x: any) => x.id === e.id
-                ).name;
-                const lastUpdate = formatStringDate(new Date(e.position.date));
-                const model = GetModel(id, equipment, equipmentModel);
-                return (
-                  <Marker position={[e.position.lat, e.position.lon]} key={id}>
-                    <Popup>
-                      <div className={styles.div}>
-                        <h2
-                          className={styles.h2}
-                        >{`Nome: ${equipmentName}`}</h2>
-                        <h3 className={styles.h3}>{`Modelo: ${model}`}</h3>
-                        <p
-                          className={styles.p}
-                        >{`Ultima atualização: ${lastUpdate}`}</p>
-                      </div>
-                      <Link href={`equipamento/${equipmentName}?id=${id}`}>
-                        <button className={styles.button}>Ver detalhes</button>
-                      </Link>
-                    </Popup>
-                  </Marker>
-                );
-              })}
+              <LayersControl.Overlay name="Ativar/Desativar Ícones" checked>
+                <LayerGroup>
+                  {useGetPosition(equipmentPositionHistory).map((e: any) => {
+                    const id = e.id;
+                    const equipmentName = equipment.find(
+                      (x: any) => x.id === e.id
+                    ).name;
+                    const lastUpdate = formatStringDate(
+                      new Date(e.position.date)
+                    );
+                    const model = GetModel(id, equipment, equipmentModel);
+                    return (
+                      <Marker
+                        position={[e.position.lat, e.position.lon]}
+                        key={id}
+                      >
+                        <Popup>
+                          <div className={styles.div}>
+                            <h2
+                              className={styles.h2}
+                            >{`Nome: ${equipmentName}`}</h2>
+                            <h3 className={styles.h3}>{`Modelo: ${model}`}</h3>
+                            <p
+                              className={styles.p}
+                            >{`Ultima atualização: ${lastUpdate}`}</p>
+                          </div>
+                          <Link href={`equipamento/${equipmentName}?id=${id}`}>
+                            <button className={styles.button}>
+                              Ver detalhes
+                            </button>
+                          </Link>
+                        </Popup>
+                      </Marker>
+                    );
+                  })}
+                </LayerGroup>
+              </LayersControl.Overlay>
             </LayerGroup>
           </BaseLayer>
         </LayersControl>
