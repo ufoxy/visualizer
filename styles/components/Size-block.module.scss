@@ -1,0 +1,23 @@
+.size_block_section {
+    height: 100vh;
+    background-color: #282A37;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .p {
+      text-align: center;
+      padding: 15px;
+      font-size: 20px;
+      font-weight: 400;
+      font-family: "montserrat", sans-serif;
+    }
+  }
+  
+  @media (min-width: 940px) {
+    .size_block_section {
+      display: none;
+    }
+  }
+  
