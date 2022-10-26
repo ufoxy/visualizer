@@ -10,7 +10,8 @@ function SizeBlock() {
           móveis.
         </p>
         <p className={styles.p}>
-          Por favor, entre em um dispositivo com uma resolução minima de 940x600
+          Por favor, entre em um dispositivo com uma resolução mínima de
+          940x600.
         </p>
       </section>
     </React.Fragment>
