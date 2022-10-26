@@ -116,9 +116,10 @@ function Dashboard() {
                 </Link>
               </div>
             </p>
-            <p
-              className={styles.other_info}
-            >{`Última Atualização: ${positionLastAtt}`}</p>
+            <p className={styles.other_info}>
+              <span className={styles.last_att_span}>Última Atualização: </span>
+              {`${positionLastAtt}`}
+            </p>
           </div>
           <div className={styles.flex}>
             <div className={styles.flex}>
@@ -128,12 +129,13 @@ function Dashboard() {
               </p>
               <PulsatingCircle color={statusClass ? statusClass : "white"} />
             </div>
-            <p
-              className={styles.other_info}
-            >{`Última Atualização: ${stateLastAtt}`}</p>
+            <p className={styles.other_info}>
+              <span className={styles.last_att_span}>Última Atualização: </span>
+              {`${stateLastAtt}`}
+            </p>
           </div>
         </div>
-        <div className={styles.flex}>
+        <div className={styles.relative_flex_direction}>
           <div className={styles.earnings}>
             <h2>
               Receita{" "}
@@ -155,8 +157,9 @@ function Dashboard() {
             </h2>
             <div className={styles.productivity_percentage_div}>
               <p>{`${productivityPercentage}%`}</p>
-              <div style={{ width: "160px", padding: "25px 0", margin: "0" }}>
+              <div className={styles.progress_bar_div}>
                 <CircularProgressbar
+                  className={styles.progress_bar}
                   value={parseFloat(productivityPercentage.replace(",", "."))}
                   text={`${productivityPercentage}%`}
                 />
