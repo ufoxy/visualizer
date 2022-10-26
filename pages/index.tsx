@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import styles from "../styles/Home.module.scss";
 import MapContext from "../src/common/contexts/Map";
 import MenuLateralContext from "../src/common/contexts/Menu-lateral";
+import Head from "next/head";
 
 const DEFAULT_CENTER = [38.907132, -77.036546];
 
@@ -69,7 +70,11 @@ const Home: NextPage = ({
   }
 
   return (
-    <React.Fragment>
+    <>
+      <Head>
+        <title>Mapa | Visualizer</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <section className={styles.section}>
         <MenuLateralContext.Provider
           value={{ equipment, filteredEquipment, path, searchFilter }}
@@ -86,7 +91,7 @@ const Home: NextPage = ({
           <MapCaller />
         </MapContext.Provider>
       </section>
-    </React.Fragment>
+    </>
   );
 };
 
