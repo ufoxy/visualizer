@@ -44,6 +44,7 @@ export async function getStaticProps() {
       equipmentStateHistory,
       equipmentState,
     },
+    revalidate: 10,
   };
 }
 

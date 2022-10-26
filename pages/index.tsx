@@ -37,6 +37,7 @@ export async function getStaticProps() {
       equipmentPositionHistory,
       equipmentModel,
     },
+    revalidate: 10,
   };
 }
 
