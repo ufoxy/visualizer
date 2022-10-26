@@ -6,6 +6,7 @@ import axios from "axios";
 import Dashboard from "../../src/components/Dashboard";
 import MenuLateralContext from "../../src/common/contexts/Menu-lateral";
 import DashboardContext from "../../src/common/contexts/Dashboard";
+import Head from "next/head";
 
 export async function getStaticPaths() {
   return {
@@ -67,7 +68,11 @@ const Produto: NextPage = ({
   }
 
   return (
-    <React.Fragment>
+    <>
+      <Head>
+        <title>Equipamento | Visualizer</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div
         style={{
           display: "flex",
@@ -91,7 +96,7 @@ const Produto: NextPage = ({
           <Dashboard />
         </DashboardContext.Provider>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
