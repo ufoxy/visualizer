@@ -27,6 +27,12 @@
   justify-content: space-between;
 }
 
+.relative_flex_direction {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .icon {
   font-size: 20px;
   padding-top: 3px;
@@ -53,7 +59,7 @@
   background-color: #2B2E44;
   color: #FFF;
   height: 220px;
-  min-width: 960px;
+  min-width: 560px;
   padding: 20px;
   margin: 0 20px;
   border: #5f66982f solid 2px;
@@ -78,7 +84,8 @@
 .earnings {
 
   width: 100%;
-  min-width: 460px;
+  max-width: 920px;
+  min-width: 400px;
   height: 315px;
   background-color: #2B2E44;
   color: #FFF;
@@ -116,11 +123,12 @@
 .productivity_percentage {
 
   width: 100%;
-  min-width: 460px;
+  max-width: 920px;
+  min-width: 400px;
   height: 315px;
   background-color: #2B2E44;
   color: #FFF;
-  padding: 30px;
+  padding: 20px;
   margin: 20px;
   border: #5f66982f solid 2px;
   border-bottom-right-radius: 30px;
@@ -146,5 +154,52 @@
   p {
     font-size: 80px;
     font-weight: 800;
+  }
+}
+
+.progress_bar_div {
+  width: 160px;
+  padding: 25px 0;
+  margin: 0;
+}
+
+@media (max-width: 1360px) {
+  .progress_bar_div {
+    display: none;
+  }
+
+  .productivity_percentage_div {
+    padding: 50px 0 0 0;
+    justify-content: center;
+  }
+
+  .progress_bar {
+    display: none;
+    width: 20px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .earnings {
+    min-width: 560px;
+    margin: 0;
+  }
+  .productivity_percentage {
+    min-width: 560px;
+    margin: 0;
+  }
+
+  .relative_flex_direction {
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+  }
+}
+
+@media (max-width: 1140px) {
+  .info {
+    .last_att_span {
+      display: none;
+    }
   }
 }
