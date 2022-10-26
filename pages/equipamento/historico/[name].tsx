@@ -4,6 +4,7 @@ import axios from "axios";
 import MenuLateral from "../../../src/components/MenuLateral";
 import Historico from "../../../src/components/Historico";
 import MenuLateralContext from "../../../src/common/contexts/Menu-lateral";
+import Head from "next/head";
 
 export async function getStaticPaths() {
   return {
@@ -39,7 +40,11 @@ const Produto: NextPage = ({ equipment }: any) => {
   }
 
   return (
-    <React.Fragment>
+    <>
+      <Head>
+        <title>Histórico | Visualizer</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div
         style={{
           display: "flex",
@@ -53,7 +58,7 @@ const Produto: NextPage = ({ equipment }: any) => {
         </MenuLateralContext.Provider>
         <Historico />
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
