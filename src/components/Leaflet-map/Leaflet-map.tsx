@@ -21,8 +21,8 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import "leaflet-defaulticon-compatibility";
 import styles from "../../../styles/components/Leaflet-map/Leaflet-map.module.scss";
 
-const DEFAULT_CENTER = { lat: -19.151801, lng: -46.007759 };
-const DEFAULT_ZOOM = 10;
+const DEFAULT_CENTER = { lat: -19.285292347527296, lng: -46.0382080078125 };
+const DEFAULT_ZOOM = 8;
 
 const { BaseLayer, Overlay } = LayersControl;
 
