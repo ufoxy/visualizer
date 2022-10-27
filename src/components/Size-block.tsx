@@ -6,14 +6,16 @@ function SizeBlock() {
   return (
     <React.Fragment>
       <section className={styles.size_block_section}>
-        <p className={styles.p}>
-          Está página não está preparada para suportar tamanhos de dispositivos
-          móveis.
-        </p>
-        <p className={styles.p}>
-          Por favor, entre em um dispositivo com uma resolução mínima de
-          940x600.
-        </p>
+        <div className={styles.alert_div}>
+          <p className={styles.p}>
+            Está página não está preparada para suportar tamanhos de
+            dispositivos móveis.
+          </p>
+          <p className={styles.p}>
+            Por favor, entre em um dispositivo com uma resolução mínima de
+            940x600.
+          </p>
+        </div>
         <footer className={styles.footer}>
           <a
             href="https://github.com/ufoxy/visualizer"
