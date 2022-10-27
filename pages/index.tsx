@@ -7,6 +7,7 @@ import styles from "../styles/Home.module.scss";
 import MapContext from "../src/common/contexts/Map";
 import MenuLateralContext from "../src/common/contexts/Menu-lateral";
 import Head from "next/head";
+import SizeBlock from "../src/components/Size-block";
 
 const DEFAULT_CENTER = [38.907132, -77.036546];
 
@@ -76,6 +77,7 @@ const Home: NextPage = ({
         <title>Mapa | Visualizer</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+      <SizeBlock />
       <section className={styles.section}>
         <MenuLateralContext.Provider
           value={{ equipment, filteredEquipment, path, searchFilter }}

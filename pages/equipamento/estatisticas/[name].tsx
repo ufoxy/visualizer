@@ -5,6 +5,7 @@ import MenuLateral from "../../../src/components/MenuLateral";
 import Estatisticas from "../../../src/components/Estatisticas";
 import MenuLateralContext from "../../../src/common/contexts/Menu-lateral";
 import Head from "next/head";
+import SizeBlock from "../../../src/components/Size-block";
 
 export async function getStaticPaths() {
   return {
@@ -45,6 +46,7 @@ const Produto: NextPage = ({ equipment }: any) => {
         <title>Estatísticas | Visualizer</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+      <SizeBlock />
       <div
         style={{
           display: "flex",
