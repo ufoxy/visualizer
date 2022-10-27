@@ -26,6 +26,7 @@
       justify-content: center;
       align-items: center;
       gap: 5px;
+      transition: all 200ms;
       .a {
         text-align: center;
         font-size: 18px;
@@ -34,7 +35,8 @@
       }
     }
     .footer:hover {
-      opacity: 100%;
+      transition: all 200ms;
+      opacity: 80%;
       cursor: pointer;
     }
   }
