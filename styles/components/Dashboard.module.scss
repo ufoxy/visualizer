@@ -82,7 +82,6 @@
 }
 
 .earnings {
-
   width: 100%;
   max-width: 920px;
   min-width: 400px;
@@ -121,7 +120,6 @@
 }
 
 .productivity_percentage {
-
   width: 100%;
   max-width: 920px;
   min-width: 400px;
@@ -158,6 +156,7 @@
 }
 
 .progress_bar_div {
+  display: block;
   width: 160px;
   padding: 25px 0;
   margin: 0;
