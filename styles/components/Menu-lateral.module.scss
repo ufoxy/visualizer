@@ -10,3 +10,9 @@
   overflow: hidden;
   font-family: "roboto", sans-serif;
 }
+
+@media (max-width: 940px) {
+  .section {
+    display: none;
+  }
+}
