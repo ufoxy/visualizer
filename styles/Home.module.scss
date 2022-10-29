@@ -2,3 +2,9 @@
   display: flex;
   flex-direction: row;
 }
+
+@media (max-width: 940px) {
+  .section {
+    display: none;
+  }
+}
