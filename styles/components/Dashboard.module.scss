@@ -162,6 +162,12 @@
   margin: 0;
 }
 
+@media (max-width: 940px) {
+  .section {
+    display: none;
+  }
+}
+
 @media (max-width: 1360px) {
   .progress_bar_div {
     display: none;
