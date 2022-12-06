@@ -8,11 +8,11 @@ function SizeBlock() {
       <section className={styles.size_block_section}>
         <div className={styles.alert_div}>
           <p className={styles.p}>
-            Está página não está preparada para suportar tamanhos de
+            Esta página não está preparada para suportar tamanhos de
             dispositivos móveis.
           </p>
           <p className={styles.p}>
-            Por favor, entre em um dispositivo com uma resolução mínima de
+            Por favor, acesse em um dispositivo com uma resolução mínima de
             940x600.
           </p>
         </div>
