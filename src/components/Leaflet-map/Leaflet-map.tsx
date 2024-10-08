@@ -46,6 +46,11 @@ function LeafletMap() {
       .join("");
   }
 
+  function GetState(id: any, equipmentStateHistory: any, equipmentState: any) {
+    return useGetStateById(id, equipmentStateHistory, equipmentState)[0]
+      .state[0];
+  }
+
   function LocationMarker() {
     function pushLocaleToHistory() {
       const locale = map.locate().getCenter();
@@ -107,13 +112,16 @@ function LeafletMap() {
                       new Date(e.position.date)
                     );
                     const model = GetModel(id, equipment, equipmentModel);
-                    const stateArrayFromGet = useGetStateById(
+                    const stateLastAtt = GetState(
                       id,
                       equipmentStateHistory,
                       equipmentState
-                    )[0].state[0];
-                    const stateLastAtt = stateArrayFromGet.name;
-                    const statusClass = stateArrayFromGet.color;
+                    ).name;
+                    const statusClass = GetState(
+                      id,
+                      equipmentStateHistory,
+                      equipmentState
+                    ).color;
 
                     return (
                       <Marker
