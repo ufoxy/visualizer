@@ -20,11 +20,29 @@
   font-size: 14px;
   font-weight: 400;
   font-family: 'roboto' sans-serif;
+  padding-bottom: 8px;
 }
 
 .p {
   font-weight: 400;
   font-family: 'roboto' sans-serif;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  height: 20px;
+}
+
+.flexCollumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  height: 80px;
+  gap: 5px;
 }
 
 .button {

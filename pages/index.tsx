@@ -37,6 +37,8 @@ export async function getStaticProps() {
       equipment,
       equipmentPositionHistory,
       equipmentModel,
+      equipmentStateHistory,
+      equipmentState,
     },
     revalidate: 10,
   };
@@ -46,6 +48,8 @@ const Home: NextPage = ({
   equipment,
   equipmentPositionHistory,
   equipmentModel,
+  equipmentStateHistory,
+  equipmentState,
 }: any) => {
   const Map = dynamic(() => import("../src/components/Map"), {
     ssr: false,
@@ -54,6 +58,8 @@ const Home: NextPage = ({
     equipment,
     equipmentPositionHistory,
     equipmentModel,
+    equipmentStateHistory,
+    equipmentState,
   }: any) {
     return <Map />;
   }
@@ -89,6 +95,8 @@ const Home: NextPage = ({
             equipment,
             equipmentPositionHistory,
             equipmentModel,
+            equipmentStateHistory,
+            equipmentState,
           }}
         >
           <MapCaller />
