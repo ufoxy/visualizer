@@ -10,7 +10,7 @@ import {
 import useGetPosition from "../../hooks/getPosition";
 import useGetModel from "../../hooks/getModel";
 import useGetStateById from "../../hooks/getStateById";
-import useGetStatusClassById from "../../hooks/getStatusClassById";
+// import useGetStatusClassById from "../../hooks/getStatusClassById";
 import formatStringDate from "../../utils/formatStringDate";
 import { useContext } from "react";
 import MapContext from "../../common/contexts/Map";
@@ -112,7 +112,6 @@ function LeafletMap() {
                       equipmentStateHistory,
                       equipmentState
                     )[0].state[0];
-                    console.log(stateArrayFromGet);
                     const stateLastAtt = stateArrayFromGet.name;
                     const statusClass = stateArrayFromGet.color;
 
