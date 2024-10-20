@@ -47,7 +47,7 @@
 .list_div {
   width: 100%;
   padding: 8px 16px;
-  height: 445px;
+  height: calc(100vh - 20px - 35px - 20px - 20px - 40px - 8px - 16px - 16px - 108px);
   overflow-y: scroll;
   scrollbar-color: linear-gradient(
     rgb(134, 239, 172),
