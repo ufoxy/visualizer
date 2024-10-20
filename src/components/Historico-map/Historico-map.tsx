@@ -48,14 +48,14 @@ function HistoricoMap() {
     useGetPositionsInLastDate(query.id, equipmentPositionHistory, 1)
   );
 
-  function addAllPositions() {
+  function useAddAllPositions() {
     setPositionsInLastDate(
       useGetAllPositionsById(query.id, equipmentPositionHistory)
     );
     positionsInLastDate[0].map((e: any) => [e.lat, e.lon]);
   }
 
-  function addPositionsInLastDate(date: number) {
+  function useAddPositionsInLastDate(date: number) {
     setPositionsInLastDate(
       useGetPositionsInLastDate(query.id, equipmentPositionHistory, date)
     );
@@ -144,34 +144,34 @@ function HistoricoMap() {
                   border: "#5f66982f solid 2px",
                   WebkitBorderTopLeftRadius: "25px",
                 }}
-                onClick={() => addAllPositions()}
+                onClick={() => useAddAllPositions()}
               >
                 Todo o Período
               </li>
               <li
                 className={styles.li}
                 style={{ borderLeft: "none", borderRight: "none" }}
-                onClick={() => addPositionsInLastDate(30)}
+                onClick={() => useAddPositionsInLastDate(30)}
               >
                 30 Dias
               </li>
               <li
                 className={styles.li}
-                onClick={() => addPositionsInLastDate(7)}
+                onClick={() => useAddPositionsInLastDate(7)}
               >
                 7 Dias
               </li>
               <li
                 className={styles.li}
                 style={{ borderLeft: "none", borderRight: "none" }}
-                onClick={() => addPositionsInLastDate(3)}
+                onClick={() => useAddPositionsInLastDate(3)}
               >
                 3 Dias
               </li>
               <li
                 className={styles.li}
                 style={{ WebkitBorderTopRightRadius: "25px" }}
-                onClick={() => addPositionsInLastDate(1)}
+                onClick={() => useAddPositionsInLastDate(1)}
               >
                 24 Horas
               </li>
