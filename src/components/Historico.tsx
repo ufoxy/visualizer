@@ -5,10 +5,12 @@ import Developing from "./Developing";
 import dynamic from "next/dynamic";
 
 function Historico() {
-
-  const Map = dynamic(() => import("../components/Historico-map/Historico-map"), {
-    ssr: false,
-  });
+  const Map = dynamic(
+    () => import("../components/Historico-map/Historico-map"),
+    {
+      ssr: false,
+    }
+  );
 
   return (
     <React.Fragment>
