@@ -1,4 +1,3 @@
-import * as React from "react";
 import useGetModel from "./getModel";
 import formatPatternDate from "../utils/formatPatternDate";
 
