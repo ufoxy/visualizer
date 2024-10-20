@@ -183,7 +183,7 @@ function HistoricoMap() {
           {positionsInLastDate[0].map((e: any) => {
             const date = new Date(e.date);
             return (
-              <button className={styles.button}>
+              <button className={styles.button} key={e.date}>
                 <p>{date.toLocaleDateString("pt-BR")}</p>
                 <p>{date.toLocaleTimeString("pt-BR")}</p>
                 <p style={{ width: "150px" }}>{`${e.lat}, ${e.lon}`}</p>
