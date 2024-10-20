@@ -1,4 +1,3 @@
-import * as React from "react";
 import useGetPosition from "./getPosition";
 
 function useGetPositionById(id: any, equipmentPositionHistory: any) {
