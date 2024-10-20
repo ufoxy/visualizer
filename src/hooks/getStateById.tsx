@@ -1,4 +1,3 @@
-import * as React from "react";
 import useGetState from "./getState";
 
 function useGetStateById(
