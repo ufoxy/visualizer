@@ -48,6 +48,20 @@ function HistoricoMap() {
     useGetPositionsInLastDate(query.id, equipmentPositionHistory, 1)
   );
 
+  function addAllPositions() {
+    setPositionsInLastDate(
+      useGetAllPositionsById(query.id, equipmentPositionHistory)
+    );
+    positionsInLastDate[0].map((e: any) => [e.lat, e.lon]);
+  }
+
+  function addPositionsInLastDate(date: number) {
+    setPositionsInLastDate(
+      useGetPositionsInLastDate(query.id, equipmentPositionHistory, date)
+    );
+    positionsInLastDate[0].map((e: any) => [e.lat, e.lon]);
+  }
+
   let points = positionsInLastDate[0].map((e: any) => [e.lat, e.lon]);
 
   var sumLat = 0;
@@ -130,75 +144,34 @@ function HistoricoMap() {
                   border: "#5f66982f solid 2px",
                   WebkitBorderTopLeftRadius: "25px",
                 }}
-                onClick={() => {
-                  setPositionsInLastDate(
-                    useGetAllPositionsById(query.id, equipmentPositionHistory)
-                  );
-                  positionsInLastDate[0].map((e: any) => [e.lat, e.lon]);
-                }}
+                onClick={() => addAllPositions()}
               >
                 Todo o Período
               </li>
               <li
                 className={styles.li}
                 style={{ borderLeft: "none", borderRight: "none" }}
-                onClick={() => {
-                  setPositionsInLastDate(
-                    useGetPositionsInLastDate(
-                      query.id,
-                      equipmentPositionHistory,
-                      30
-                    )
-                  );
-                  positionsInLastDate[0].map((e: any) => [e.lat, e.lon]);
-                }}
+                onClick={() => addPositionsInLastDate(30)}
               >
                 30 Dias
               </li>
               <li
                 className={styles.li}
-                onClick={() => {
-                  setPositionsInLastDate(
-                    useGetPositionsInLastDate(
-                      query.id,
-                      equipmentPositionHistory,
-                      7
-                    )
-                  );
-                  positionsInLastDate[0].map((e: any) => [e.lat, e.lon]);
-                }}
+                onClick={() => addPositionsInLastDate(7)}
               >
                 7 Dias
               </li>
               <li
                 className={styles.li}
                 style={{ borderLeft: "none", borderRight: "none" }}
-                onClick={() => {
-                  setPositionsInLastDate(
-                    useGetPositionsInLastDate(
-                      query.id,
-                      equipmentPositionHistory,
-                      3
-                    )
-                  );
-                  positionsInLastDate[0].map((e: any) => [e.lat, e.lon]);
-                }}
+                onClick={() => addPositionsInLastDate(3)}
               >
                 3 Dias
               </li>
               <li
                 className={styles.li}
                 style={{ WebkitBorderTopRightRadius: "25px" }}
-                onClick={() => {
-                  setPositionsInLastDate(
-                    useGetPositionsInLastDate(
-                      query.id,
-                      equipmentPositionHistory,
-                      1
-                    )
-                  );
-                  positionsInLastDate[0].map((e: any) => [e.lat, e.lon]);
-                }}
+                onClick={() => addPositionsInLastDate(1)}
               >
                 24 Horas
               </li>
