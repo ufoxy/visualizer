@@ -1,5 +1,3 @@
-import * as React from "react";
-
 function useGetModel(id: any, equipment: any, equipmentModel: any) {
   const equipmentModelId = equipment
     .filter((e: any) => e.id === id)
