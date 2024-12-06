@@ -142,7 +142,7 @@ function HistoricoMap() {
                 className={styles.li}
                 style={{
                   border: "#5f66982f solid 2px",
-                  WebkitBorderTopLeftRadius: "25px",
+                  WebkitBorderTopLeftRadius: "10px",
                 }}
                 onClick={() => AddAllPositions()}
               >
@@ -170,7 +170,7 @@ function HistoricoMap() {
               </li>
               <li
                 className={styles.li}
-                style={{ WebkitBorderTopRightRadius: "25px" }}
+                style={{ WebkitBorderTopRightRadius: "10px" }}
                 onClick={() => AddPositionsInLastDate(1)}
               >
                 24 Horas
