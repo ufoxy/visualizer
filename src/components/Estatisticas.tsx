@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Tabs from "./Tabs/Tabs";
 import styles from "../../styles/components/Estatisticas.module.scss";
-import { Line } from "react-chartjs-2";
+import { Line, Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,19 +12,67 @@ import {
   Tooltip,
   Legend,
   ChartOptions,
+  ArcElement,
 } from "chart.js";
+import { BsInfoCircle } from "react-icons/bs";
+import { IoChevronUpCircle } from "react-icons/io5";
+import { IoChevronDownCircle } from "react-icons/io5";
+import { IoCheckmarkCircle } from "react-icons/io5";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend
 );
 
 function Estatisticas() {
+  const DoughnutChart: React.FC = () => {
+    const data = {
+      labels: [
+        "Operações Neutras",
+        "Operações de Manutenção",
+        "Operações Produtivas",
+      ],
+      datasets: [
+        {
+          data: [55, 15, 80],
+          backgroundColor: [
+            "rgba(0, 43, 73, 1)",
+            "rgba(0, 103, 160, 1)",
+            "rgba(83, 217, 217, 1)",
+          ],
+          borderColor: [
+            "rgba(0, 43, 73, 1)",
+            "rgba(0, 103, 160, 1)",
+            "rgba(83, 217, 217, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    };
+
+    const options = {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top" as const,
+        },
+        tooltip: {
+          enabled: true,
+        },
+      },
+    };
+
+    return <Doughnut data={data} options={options} />;
+  };
+
+  // ----------------------------------
+
   const Data = [
     { id: 1, year: 2016, userGain: 80000, userLost: 823 },
     { id: 2, year: 2017, userGain: 45677, userLost: 345 },
@@ -43,12 +91,12 @@ function Estatisticas() {
   ]);
   const chartRef = useRef<ChartJS<"line", number[], string>>(null); // Define o tipo corretamente
 
-  const LineChartComponent = () => {
+  const LineChartComponent: React.FC = () => {
     const data = {
       labels: labels,
       datasets: [
         {
-          label: "Vendas",
+          label: "Receita de Produção",
           data: [65, 59, 80, 81, 56, 55, 0, 0, -90],
           fill: false,
           tension: 0.1,
@@ -101,9 +149,9 @@ function Estatisticas() {
           },
         },
         title: {
-          display: true,
-          text: "Gráfico de Produção",
-          color: "white",
+          display: false,
+          // text: "Gráfico de Produção",
+          // color: "white",
         },
       },
     };
@@ -262,46 +310,130 @@ function Estatisticas() {
     <React.Fragment>
       <section className={styles.section}>
         <Tabs />
-        <div className={styles.chart_bar_div}>
-          <nav>
-            <ul className={styles.chart_bar_ul}>
-              <li
-                className={styles.li}
-                onClick={() => getYears()}
-                style={{ borderRight: "0px", borderTopLeftRadius: "10px", borderBottomLeftRadius: "10px" }}
-              >
-                Todo o Período
-              </li>
-              <li
-                className={styles.li}
-                onClick={() => getYear()}
-                style={{ borderRight: "0px" }}
-              >
-                1 Ano
-              </li>
-              <li
-                className={styles.li}
-                onClick={() => getMonth()}
-                style={{ borderRight: "0px" }}
-              >
-                30 Dias
-              </li>
-              <li
-                className={styles.li}
-                onClick={() => getWeekDays()}
-                style={{ borderRight: "0px" }}
-              >
-                7 Dias
-              </li>
-              <li
-                className={styles.li}
-                onClick={() => get24Hours()}
-                style={{ borderTopRightRadius: "10px", borderBottomRightRadius: "10px" }}
-              >
-                24 Horas
-              </li>
-            </ul>
-          </nav>
+        <nav>
+          <ul className={styles.chart_bar_ul}>
+            <li
+              className={styles.li}
+              onClick={() => getYears()}
+              style={{
+                borderRight: "0px",
+                borderTopLeftRadius: "10px",
+                borderBottomLeftRadius: "10px",
+              }}
+            >
+              Todo o Período
+            </li>
+            <li
+              className={styles.li}
+              onClick={() => getYear()}
+              style={{ borderRight: "0px" }}
+            >
+              1 Ano
+            </li>
+            <li
+              className={styles.li}
+              onClick={() => getMonth()}
+              style={{ borderRight: "0px" }}
+            >
+              30 Dias
+            </li>
+            <li
+              className={styles.li}
+              onClick={() => getWeekDays()}
+              style={{ borderRight: "0px" }}
+            >
+              7 Dias
+            </li>
+            <li
+              className={styles.li}
+              onClick={() => get24Hours()}
+              style={{
+                borderTopRightRadius: "10px",
+                borderBottomRightRadius: "10px",
+              }}
+            >
+              24 Horas
+            </li>
+          </ul>
+        </nav>
+
+        <div className={styles.flex}>
+          <div className={styles.flex_collumn}>
+            <div
+              className={styles.earnings_div}
+              style={{
+                borderTopRightRadius: "0px",
+                borderBottomRightRadius: "0px",
+                borderBottomLeftRadius: "0px",
+              }}
+            >
+              <h2 className={styles.h2}>
+                Receita{" "}
+                <abbr
+                  title={`Receita gerada em uma determinada data específica informada pelo usuário`}
+                >
+                  <BsInfoCircle className={styles.icon} />
+                </abbr>
+              </h2>
+              <h3 className={styles.h3}>
+                <small className={styles.small}>R$</small>
+                {`100`}
+                <IoChevronDownCircle className={styles.percentage_icon} />
+              </h3>
+            </div>
+
+            <div
+              className={styles.earnings_percentage_div}
+              style={{
+                borderTopLeftRadius: "0px",
+                borderTopRightRadius: "0px",
+                borderBottomRightRadius: "0px",
+              }}
+            >
+              <h2 className={styles.h2}>
+                Percentual de Produtividade
+                <abbr
+                  title={`O Percentual de Receita te mostrará se houve um aumento ou não na receita gerada.`}
+                >
+                  <BsInfoCircle className={styles.icon} />
+                </abbr>
+              </h2>
+              <h3 className={styles.h3}>
+                {`100`}
+                <small className={styles.small}>%</small>
+                {/* <IoChevronUpCircle className={styles.percentage_icon}/> */}
+                {/* <IoChevronDownCircle className={styles.percentage_icon} /> */}
+                <IoCheckmarkCircle className={styles.percentage_icon} />
+              </h3>
+            </div>
+          </div>
+
+          <div
+            className={styles.doughnut_chart_div}
+            style={{
+              borderTopLeftRadius: "0px",
+              borderBottomLeftRadius: "0px",
+            }}
+          >
+            <h2 className={styles.h2}>
+              Gráfico de Operações{" "}
+              <abbr title="">
+                <BsInfoCircle className={styles.icon} />
+              </abbr>
+            </h2>
+            <div className={styles.doughnut_chart}>
+              <DoughnutChart />
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.chart_bar_div} style={{borderTopLeftRadius: "0px", borderTopRightRadius: "0px"}}>
+          <h2 className={styles.h2}>
+            Gráfico de Produção{" "}
+            <abbr title="">
+              <BsInfoCircle className={styles.icon} />
+            </abbr>
+          </h2>
           <LineChartComponent />
         </div>
       </section>
