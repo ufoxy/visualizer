@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import Tabs from "./Tabs/Tabs";
 import styles from "../../styles/components/Estatisticas.module.scss";
 import { Line, Doughnut } from "react-chartjs-2";
@@ -19,6 +19,17 @@ import { IoChevronUpCircle } from "react-icons/io5";
 import { IoChevronDownCircle } from "react-icons/io5";
 import { IoCheckmarkCircle } from "react-icons/io5";
 
+import useGetEarningCalculatorById from "../hooks/getEarningCalculatorById";
+import useGetModel from "../hooks/getModel";
+import useGetProductivityPercentageById from "../hooks/getProductivityPercentageById";
+import useGetPositionById from "../hooks/getPositionById";
+import useGetStateById from "../hooks/getStateById";
+import useGetStatusClassById from "../hooks/getStatusClassById";
+import useProductivityTrend from '../hooks/getProductivityTrend';
+import { useRouter } from "next/router";
+import StatisticsContext from "../common/contexts/Statistics";
+import useGetEarningsByPeriod from "../hooks/getEarningsByPeriod";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -30,7 +41,40 @@ ChartJS.register(
   Legend
 );
 
+type Period = "24hrs" | "7d" | "30d" | "1y" | "all";
+
 function Estatisticas() {
+  const {
+    equipment,
+    equipmentModel,
+    equipmentPositionHistory,
+    equipmentStateHistory,
+    equipmentState,
+  }: any = useContext(StatisticsContext);
+  const { query } = useRouter();
+
+  const [filterDay, setFilterDay] = useState('24hrs');
+
+  const model = useGetModel(query.id, equipment, equipmentModel).map(
+    (e: any) => e.name
+  );
+  // Modelo do equipamento
+
+  const productivityPercentage = useGetProductivityPercentageById(
+    query.id,
+    equipment,
+    equipmentModel,
+    equipmentStateHistory,
+    filterDay as Period,
+  ).replace(".", ",");
+  // Percentual de produtividade usando a fórmula a seguir: (Total de operações / Data a ser filtrado) * 100
+
+  const trend = useProductivityTrend(query.id, equipment, equipmentModel, equipmentStateHistory, filterDay as Period);
+  const earnings = useGetEarningCalculatorById(query.id, equipmentModel, equipmentStateHistory, equipment, filterDay as Period);
+  let earningsByPeriod = useGetEarningsByPeriod(query.id, equipmentModel, equipmentStateHistory, filterDay as Period);
+
+  console.log(earningsByPeriod)
+
   const DoughnutChart: React.FC = () => {
     const data = {
       labels: [
@@ -91,13 +135,15 @@ function Estatisticas() {
   ]);
   const chartRef = useRef<ChartJS<"line", number[], string>>(null); // Define o tipo corretamente
 
+
+
   const LineChartComponent: React.FC = () => {
     const data = {
       labels: labels,
       datasets: [
         {
           label: "Receita de Produção",
-          data: [65, 59, 80, 81, 56, 55, 0, 0, -90],
+          data: earningsByPeriod,
           fill: false,
           tension: 0.1,
           pointRadius: 5,
@@ -205,6 +251,8 @@ function Estatisticas() {
     }
     // Define os dias da semana
     useLabels(weekDays);
+
+    setFilterDay('7d')
   }
 
   function get24Hours() {
@@ -226,6 +274,8 @@ function Estatisticas() {
 
     // Define as horas
     useLabels(hours);
+
+    setFilterDay('24hrs')
   }
 
   function getMonth() {
@@ -248,6 +298,8 @@ function Estatisticas() {
 
     // Exibe os dias do mês
     useLabels(daysInMonth);
+
+    setFilterDay('30d')
   }
 
   function getYear() {
@@ -284,6 +336,8 @@ function Estatisticas() {
 
     // Exibe os meses
     useLabels(monthsInPreviousYear);
+
+    setFilterDay('1y')
   }
 
   function getYears() {
@@ -304,6 +358,8 @@ function Estatisticas() {
 
     // Exibe os anos
     useLabels(years);
+
+    setFilterDay('all')
   }
 
   return (
@@ -377,7 +433,7 @@ function Estatisticas() {
               </h2>
               <h3 className={styles.h3}>
                 <small className={styles.small}>R$</small>
-                {`100`}
+                {earnings}
                 <IoChevronDownCircle className={styles.percentage_icon} />
               </h3>
             </div>
@@ -399,7 +455,7 @@ function Estatisticas() {
                 </abbr>
               </h2>
               <h3 className={styles.h3}>
-                {`100`}
+                {`${productivityPercentage}`}
                 <small className={styles.small}>%</small>
                 {/* <IoChevronUpCircle className={styles.percentage_icon}/> */}
                 {/* <IoChevronDownCircle className={styles.percentage_icon} /> */}
@@ -427,7 +483,10 @@ function Estatisticas() {
           </div>
         </div>
 
-        <div className={styles.chart_bar_div} style={{borderTopLeftRadius: "0px", borderTopRightRadius: "0px"}}>
+        <div
+          className={styles.chart_bar_div}
+          style={{ borderTopLeftRadius: "0px", borderTopRightRadius: "0px" }}
+        >
           <h2 className={styles.h2}>
             Gráfico de Produção{" "}
             <abbr title="">
