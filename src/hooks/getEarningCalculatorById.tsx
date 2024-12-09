@@ -1,90 +1,84 @@
-import useGetModel from "./getModel";
 import formatPatternDate from "../utils/formatPatternDate";
+import useGetModel from "./getModel";
+
+type Period = "24hrs" | "7d" | "30d" | "1y" | "all";
 
 function useGetEarningCalculatorById(
   id: any,
   equipmentModel: any,
   equipmentStateHistory: any,
-  equipment: any
+  equipment: any,
+  period: Period
 ) {
   const filterEquipment = equipmentStateHistory.filter(
     (e: any) => e.equipmentId === id
   );
-  const equipmentHistory = filterEquipment.map((e: any) => e);
-  const currentDay = filterEquipment.map((e: any) =>
-    Math.max(...e.states.map((e: any) => new Date(e.date).getTime()))
-  );
-  const currentDayToString = currentDay
-    .map((e: any) => formatPatternDate(e))
-    .join("");
 
-  const filterEquipmentHistory = equipmentHistory
+  const currentDate = new Date("2021-02-28T00:00:00.000Z");
+  let startDate: Date;
+
+  switch (period) {
+    case "24hrs":
+      startDate = new Date(currentDate);
+      startDate.setDate(currentDate.getDate() - 1);
+      break;
+    case "7d":
+      startDate = new Date(currentDate);
+      startDate.setDate(currentDate.getDate() - 7);
+      break;
+    case "30d":
+      startDate = new Date(currentDate);
+      startDate.setMonth(currentDate.getMonth() - 1);
+      break;
+    case "1y":
+      startDate = new Date(currentDate);
+      startDate.setFullYear(currentDate.getFullYear() - 1);
+      break;
+    case "all":
+    default:
+      const allDates = filterEquipment
+        .flatMap((e: any) => e.states.map((state: any) => new Date(state.date)))
+        .sort((a: Date, b: Date) => a.getTime() - b.getTime());
+      startDate = allDates[0] || new Date(0);
+      break;
+  }
+
+  const filterEquipmentHistory = filterEquipment
     .filter((e: any) => e.states)
     .map((e: any) =>
-      e.states.filter(
-        (e: any) => e.date.substring(0, 10) === currentDayToString
-      )
+      e.states.filter((state: any) => {
+        const stateDate = new Date(state.date);
+        return stateDate >= startDate && stateDate <= currentDate;
+      })
     );
 
   const hourlyEarnings = useGetModel(id, equipment, equipmentModel).map(
     (e: any) => e.hourlyEarnings
   );
-  const stateOperating = hourlyEarnings
-    .map((e: any) => e[0])
-    .map((e: any) => e);
-  const stateStopped = hourlyEarnings.map((e: any) => e[1]).map((e: any) => e);
-  const stateMaintenance = hourlyEarnings
-    .map((e: any) => e[2])
-    .map((e: any) => e);
-  const filterStateOperating = {
-    value: Number(stateOperating.map((e: any) => e.value).join("")),
-    qtyStates: Number(
-      filterEquipmentHistory
-        .map(
-          (e: any) =>
-            e.filter(
-              (e: any) =>
-                e.equipmentStateId ===
-                stateOperating.map((e: any) => e.equipmentStateId).join("")
-            ).length
-        )
-        .join("")
-    ),
+
+  const stateOperating = hourlyEarnings.map((e: any) => e[0]);
+  const stateStopped = hourlyEarnings.map((e: any) => e[1]);
+  const stateMaintenance = hourlyEarnings.map((e: any) => e[2]);
+
+  const calculateEarnings = (state: any, history: any) => {
+    if (!state) {
+      return 0;
+    }
+    const value = Number(state.value) || 0;
+    const qtyStates = history.reduce((acc: number, e: any) => {
+      return (
+        acc +
+        e.filter((s: any) => s.equipmentStateId === state.equipmentStateId)
+          .length
+      );
+    }, 0);
+    return value * qtyStates;
   };
-  const filterStateStopped = {
-    value: Number(stateStopped.map((e: any) => e.value).join("")),
-    qtyStates: Number(
-      filterEquipmentHistory
-        .map(
-          (e: any) =>
-            e.filter(
-              (e: any) =>
-                e.equipmentStateId ===
-                stateStopped.map((e: any) => e.equipmentStateId).join("")
-            ).length
-        )
-        .join("")
-    ),
-  };
-  const filterStateMaintenance = {
-    value: Number(stateMaintenance.map((e: any) => e.value).join("")),
-    qtyStates: Number(
-      filterEquipmentHistory
-        .map(
-          (e: any) =>
-            e.filter(
-              (e: any) =>
-                e.equipmentStateId ===
-                stateMaintenance.map((e: any) => e.equipmentStateId).join("")
-            ).length
-        )
-        .join("")
-    ),
-  };
+
   const earnings =
-    filterStateOperating.qtyStates * filterStateOperating.value +
-    filterStateStopped.qtyStates * filterStateStopped.value +
-    filterStateMaintenance.qtyStates * filterStateMaintenance.value;
+    calculateEarnings(stateOperating[0], filterEquipmentHistory) +
+    calculateEarnings(stateStopped[0], filterEquipmentHistory) +
+    calculateEarnings(stateMaintenance[0], filterEquipmentHistory);
 
   return earnings;
 }
