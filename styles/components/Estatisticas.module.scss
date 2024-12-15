@@ -46,7 +46,11 @@
   cursor: pointer;
 }
 
-.percentage_icon {
+.icon:hover {
+  color: #ffffffbe;
+}
+
+.trend_icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,9 +58,12 @@
   margin-left: 10px;
 }
 
-.icon:hover {
+.trend_icon:hover {
   color: #ffffffbe;
+  cursor: pointer;
 }
+
+
 
 .earnings_div {
   display: flex;

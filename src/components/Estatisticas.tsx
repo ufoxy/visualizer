@@ -25,10 +25,12 @@ import useGetProductivityPercentageById from "../hooks/getProductivityPercentage
 import useGetPositionById from "../hooks/getPositionById";
 import useGetStateById from "../hooks/getStateById";
 import useGetStatusClassById from "../hooks/getStatusClassById";
-import useProductivityTrend from '../hooks/getProductivityTrend';
+import useProductivityTrend from "../hooks/getProductivityTrend";
 import { useRouter } from "next/router";
 import StatisticsContext from "../common/contexts/Statistics";
 import useGetEarningsByPeriod from "../hooks/getEarningsByPeriod";
+import useGetOperationCounts from "../hooks/getOperationsCount";
+import useEarningsTrend from "../hooks/getEarningsTrend";
 
 ChartJS.register(
   CategoryScale,
@@ -53,7 +55,7 @@ function Estatisticas() {
   }: any = useContext(StatisticsContext);
   const { query } = useRouter();
 
-  const [filterDay, setFilterDay] = useState('24hrs');
+  const [filterDay, setFilterDay] = useState("24hrs");
 
   const model = useGetModel(query.id, equipment, equipmentModel).map(
     (e: any) => e.name
@@ -65,15 +67,77 @@ function Estatisticas() {
     equipment,
     equipmentModel,
     equipmentStateHistory,
-    filterDay as Period,
-  ).replace(".", ",");
-  // Percentual de produtividade usando a fórmula a seguir: (Total de operações / Data a ser filtrado) * 100
+    filterDay as Period
+  ).replace(".", ","); // Percentual de produtividade usando a fórmula a seguir: (Total de operações / Data a ser filtrado) * 100
+  const productivityTrend = useProductivityTrend(
+    query.id,
+    equipment,
+    equipmentModel,
+    equipmentStateHistory,
+    filterDay as Period
+  );
+  const earnings = useGetEarningCalculatorById(
+    query.id,
+    equipmentModel,
+    equipmentStateHistory,
+    equipment,
+    filterDay as Period
+  );
+  let earningsByPeriod = useGetEarningsByPeriod(
+    query.id,
+    equipmentModel,
+    equipmentStateHistory,
+    filterDay as Period
+  );
+  const earningsTrend = useEarningsTrend(
+    query.id,
+    equipmentModel,
+    equipmentStateHistory,
+    filterDay as Period
+  );
+  const operationCounts = useGetOperationCounts(
+    query.id,
+    equipmentState,
+    equipmentStateHistory,
+    filterDay as Period
+  );
 
-  const trend = useProductivityTrend(query.id, equipment, equipmentModel, equipmentStateHistory, filterDay as Period);
-  const earnings = useGetEarningCalculatorById(query.id, equipmentModel, equipmentStateHistory, equipment, filterDay as Period);
-  let earningsByPeriod = useGetEarningsByPeriod(query.id, equipmentModel, equipmentStateHistory, filterDay as Period);
+  function trendHandler(trend: string, type: string) {
+    if (trend === "Manteve") {
+      return (
+        <abbr title={`A ${type} se manteve igual ao período anterior.`}>
+          {" "}
+          <IoCheckmarkCircle className={styles.trend_icon} />{" "}
+        </abbr>
+      );
+    } else if (trend === "Diminuiu") {
+      return (
+        <abbr
+          title={`A ${type} apresentou uma queda comparado ao período anterior.`}
+        >
+          {" "}
+          <IoChevronDownCircle className={styles.trend_icon} />{" "}
+        </abbr>
+      );
+    } else
+      return (
+        <abbr
+          title={`A ${type} teve um desempenho superior em comparação ao período anterior.`}
+        >
+          {" "}
+          <IoChevronUpCircle className={styles.trend_icon} />{" "}
+        </abbr>
+      );
+  }
 
-  console.log(earningsByPeriod)
+  function dateFilterHandler(date: any) {
+    // "24hrs" | "7d" | "30d" | "1y" | "all"
+    if (date === "24hrs") return "as últimas 24 horas";
+    else if (date === "7d") return "os últimos 7 dias";
+    else if (date === "30d") return "os últimos 30 Dias";
+    else if (date === "1y") return "o período de 1 ano";
+    else return "em todo o período";
+  }
 
   const DoughnutChart: React.FC = () => {
     const data = {
@@ -84,7 +148,11 @@ function Estatisticas() {
       ],
       datasets: [
         {
-          data: [55, 15, 80],
+          data: [
+            operationCounts.idleOperations,
+            operationCounts.maintenanceOperations,
+            operationCounts.productiveOperations,
+          ],
           backgroundColor: [
             "rgba(0, 43, 73, 1)",
             "rgba(0, 103, 160, 1)",
@@ -117,32 +185,33 @@ function Estatisticas() {
 
   // ----------------------------------
 
-  const Data = [
-    { id: 1, year: 2016, userGain: 80000, userLost: 823 },
-    { id: 2, year: 2017, userGain: 45677, userLost: 345 },
-    { id: 3, year: 2018, userGain: 78888, userLost: 555 },
-    { id: 4, year: 2019, userGain: 90000, userLost: 4555 },
-    { id: 5, year: 2020, userGain: 4300, userLost: 234 },
-  ];
+  function generateLast24HoursArray() {
+    const baseDate = new Date(2021, 1, 28, 22); // 28/02/2021 às 22:00 (mês é indexado em 0)
+    const hoursArray = [];
 
-  const [labels, useLabels] = useState([
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-  ]);
+    for (let i = 23; i >= 0; i--) {
+      const hour = new Date(baseDate);
+      hour.setHours(baseDate.getHours() - i);
+
+      // Formata as horas e minutos em "HH:MM"
+      const formattedTime = hour
+        .toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })
+        .replace(":00", ":00"); // Opcional: força "00" nos minutos, caso o formato local seja diferente.
+      hoursArray.push(formattedTime);
+    }
+
+    return hoursArray;
+  }
+
+  const [labels, useLabels] = useState(generateLast24HoursArray());
   const chartRef = useRef<ChartJS<"line", number[], string>>(null); // Define o tipo corretamente
-
-
 
   const LineChartComponent: React.FC = () => {
     const data = {
       labels: labels,
       datasets: [
         {
-          label: "Receita de Produção",
+          label: "Receita de Produção (R$)",
           data: earningsByPeriod,
           fill: false,
           tension: 0.1,
@@ -174,7 +243,7 @@ function Estatisticas() {
             font: {
               size: 16, // Tamanho da fonte dos rótulos do eixo Y
             },
-            padding: 15,
+            padding: 25,
           },
         },
         y: {
@@ -183,7 +252,7 @@ function Estatisticas() {
             font: {
               size: 15, // Tamanho da fonte dos rótulos do eixo Y
             },
-            padding: 15,
+            padding: 25,
           },
         },
       },
@@ -214,11 +283,10 @@ function Estatisticas() {
           0,
           chartInstance.height
         );
+
         gradient.addColorStop(0, "#00aeff"); // Azul vibrante
         gradient.addColorStop(0.25, "#3caeff"); // Azul claro
         gradient.addColorStop(0.5, "#5581FF"); // Azul médio
-        gradient.addColorStop(0.75, "#a68eff"); // Lilás claro
-        gradient.addColorStop(1, "#b58eff"); // Lilás mais claro
 
         // Aplicar o gradiente à linha
         chartInstance.data.datasets[0].borderColor = gradient;
@@ -252,7 +320,7 @@ function Estatisticas() {
     // Define os dias da semana
     useLabels(weekDays);
 
-    setFilterDay('7d')
+    setFilterDay("7d");
   }
 
   function get24Hours() {
@@ -275,7 +343,7 @@ function Estatisticas() {
     // Define as horas
     useLabels(hours);
 
-    setFilterDay('24hrs')
+    setFilterDay("24hrs");
   }
 
   function getMonth() {
@@ -299,7 +367,7 @@ function Estatisticas() {
     // Exibe os dias do mês
     useLabels(daysInMonth);
 
-    setFilterDay('30d')
+    setFilterDay("30d");
   }
 
   function getYear() {
@@ -337,7 +405,7 @@ function Estatisticas() {
     // Exibe os meses
     useLabels(monthsInPreviousYear);
 
-    setFilterDay('1y')
+    setFilterDay("1y");
   }
 
   function getYears() {
@@ -359,7 +427,7 @@ function Estatisticas() {
     // Exibe os anos
     useLabels(years);
 
-    setFilterDay('all')
+    setFilterDay("all");
   }
 
   return (
@@ -426,7 +494,9 @@ function Estatisticas() {
               <h2 className={styles.h2}>
                 Receita{" "}
                 <abbr
-                  title={`Receita gerada em uma determinada data específica informada pelo usuário`}
+                  title={`Receita gerada em uma data específica escolhida pelo usuário. Atualmente, exibindo ${dateFilterHandler(
+                    filterDay
+                  )}.`}
                 >
                   <BsInfoCircle className={styles.icon} />
                 </abbr>
@@ -434,7 +504,7 @@ function Estatisticas() {
               <h3 className={styles.h3}>
                 <small className={styles.small}>R$</small>
                 {earnings}
-                <IoChevronDownCircle className={styles.percentage_icon} />
+                {trendHandler(earningsTrend, "receita")}
               </h3>
             </div>
 
@@ -449,7 +519,9 @@ function Estatisticas() {
               <h2 className={styles.h2}>
                 Percentual de Produtividade
                 <abbr
-                  title={`O Percentual de Receita te mostrará se houve um aumento ou não na receita gerada.`}
+                  title={`O percentual de produtividade mostrará ao usuário a porcentagem de ações produtivas conforme a data informada. Atualmente, exibindo ${dateFilterHandler(
+                    filterDay
+                  )}.`}
                 >
                   <BsInfoCircle className={styles.icon} />
                 </abbr>
@@ -457,9 +529,7 @@ function Estatisticas() {
               <h3 className={styles.h3}>
                 {`${productivityPercentage}`}
                 <small className={styles.small}>%</small>
-                {/* <IoChevronUpCircle className={styles.percentage_icon}/> */}
-                {/* <IoChevronDownCircle className={styles.percentage_icon} /> */}
-                <IoCheckmarkCircle className={styles.percentage_icon} />
+                {trendHandler(productivityTrend, "produtividade")}
               </h3>
             </div>
           </div>
@@ -473,7 +543,11 @@ function Estatisticas() {
           >
             <h2 className={styles.h2}>
               Gráfico de Operações{" "}
-              <abbr title="">
+              <abbr
+                title={`O gráfico de operações converte as informações de cada um dos três tipos de operações — produtiva, neutra (parado) e de manutenção — em uma representação gráfica, com base na data informada. Atualmente, exibindo ${dateFilterHandler(
+                  filterDay
+                )}.`}
+              >
                 <BsInfoCircle className={styles.icon} />
               </abbr>
             </h2>
@@ -489,7 +563,11 @@ function Estatisticas() {
         >
           <h2 className={styles.h2}>
             Gráfico de Produção{" "}
-            <abbr title="">
+            <abbr
+              title={`O gráfico de produção apresenta os ganhos gerados de forma visual, facilitando a análise de períodos e a compreensão dos gastos e lucros. Atualmente, exibindo ${dateFilterHandler(
+                filterDay
+              )}.`}
+            >
               <BsInfoCircle className={styles.icon} />
             </abbr>
           </h2>
