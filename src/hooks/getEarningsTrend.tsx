@@ -53,13 +53,16 @@ function useEarningsTrend(
         totalPreviousEarnings = previousEarnings.slice(-2, -1)[0] || 0;
         break;
       case "7d":
-        totalPreviousEarnings = previousEarnings.reduce((acc, curr) => acc + curr, 0) || 0;
+        totalPreviousEarnings =
+          previousEarnings.reduce((acc, curr) => acc + curr, 0) || 0;
         break;
       case "30d":
-        totalPreviousEarnings = previousEarnings.reduce((acc, curr) => acc + curr, 0) || 0;
+        totalPreviousEarnings =
+          previousEarnings.reduce((acc, curr) => acc + curr, 0) || 0;
         break;
       case "1y":
-        totalPreviousEarnings = previousEarnings.reduce((acc, curr) => acc + curr, 0) || 0;
+        totalPreviousEarnings =
+          previousEarnings.reduce((acc, curr) => acc + curr, 0) || 0;
         break;
       case "all":
         totalPreviousEarnings = previousEarnings[0] || 0; // total
@@ -75,7 +78,10 @@ function useEarningsTrend(
   const previousTotalEarnings = calculatePreviousEarnings();
 
   if (currentEarnings.length > 0) {
-    const currentTotalEarnings = currentEarnings.reduce((acc, curr) => acc + curr, 0);
+    const currentTotalEarnings = currentEarnings.reduce(
+      (acc, curr) => acc + curr,
+      0
+    );
     if (currentTotalEarnings > previousTotalEarnings) {
       return "Aumentou";
     } else if (currentTotalEarnings < previousTotalEarnings) {

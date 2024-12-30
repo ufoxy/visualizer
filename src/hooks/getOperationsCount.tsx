@@ -30,7 +30,7 @@ function useGetOperationCounts(
 ): OperationCounts {
   const fixedDate = new Date(2021, 1, 28, 22);
 
-  const calculateOperationCounts = () => {
+  const operationCounts = useMemo(() => {
     const filteredData = equipmentStateHistory.find(
       (e) => e.equipmentId === id
     );
@@ -42,10 +42,6 @@ function useGetOperationCounts(
         maintenanceOperations: 0,
       };
     }
-
-    let productiveOperations = 0;
-    let idleOperations = 0;
-    let maintenanceOperations = 0;
 
     let startDate: Date;
     switch (period) {
@@ -67,46 +63,39 @@ function useGetOperationCounts(
         break;
       case "all":
       default:
-        startDate = new Date(0); // Começo do tempo
+        startDate = new Date(0); // Início do tempo
         break;
     }
 
-    filteredData.states.forEach((state) => {
-      const recordDate = new Date(state.date);
-      if (recordDate >= startDate && recordDate <= fixedDate) {
-        const equipmentState = equipmentStates.find(
-          (s) => s.id === state.equipmentStateId
-        );
+    return filteredData.states.reduce(
+      (acc, state) => {
+        const recordDate = new Date(state.date);
+        if (recordDate >= startDate && recordDate <= fixedDate) {
+          const equipmentState = equipmentStates.find(
+            (s) => s.id === state.equipmentStateId
+          );
 
-        if (equipmentState) {
-          switch (equipmentState.name) {
-            case "Operando":
-              productiveOperations++;
-              break;
-            case "Parado":
-              idleOperations++;
-              break;
-            case "Manutenção":
-              maintenanceOperations++;
-              break;
-            default:
-              break;
+          if (equipmentState) {
+            switch (equipmentState.name) {
+              case "Operando":
+                acc.productiveOperations++;
+                break;
+              case "Parado":
+                acc.idleOperations++;
+                break;
+              case "Manutenção":
+                acc.maintenanceOperations++;
+                break;
+              default:
+                break;
+            }
           }
         }
-      }
-    });
-
-    return {
-      productiveOperations,
-      idleOperations,
-      maintenanceOperations,
-    };
-  };
-
-  const operationCounts = useMemo(
-    () => calculateOperationCounts(),
-    [id, equipmentStateHistory, equipmentStates, period]
-  );
+        return acc;
+      },
+      { productiveOperations: 0, idleOperations: 0, maintenanceOperations: 0 }
+    );
+  }, [id, equipmentStates, equipmentStateHistory, period, fixedDate]);
 
   return operationCounts;
 }

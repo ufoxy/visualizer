@@ -204,6 +204,7 @@ function HistoricoMap() {
               src={pin}
               width={16}
               height={22}
+              alt="Rota Final"
               style={{ filter: "hue-rotate(150deg)" }}
             />
           </p>
@@ -213,11 +214,12 @@ function HistoricoMap() {
               src={pin}
               width={16}
               height={22}
+              alt="Rota Inicial"
               style={{ filter: "hue-rotate(50deg)" }}
             />
           </p>
           <p className={styles.p}>
-            Rotas: <Image src={pin} width={16} height={22} />
+            Rotas: <Image src={pin} alt="Rotas" width={16} height={22} />
           </p>
         </article>
         <MapContainer

@@ -27,7 +27,7 @@ function useGetEarningsByPeriod(
 ): number[] {
   const fixedDate = new Date(2021, 1, 28, 22);
 
-  const calculateEarnings = () => {
+  const earningsArray = useMemo(() => {
     let startDate: Date;
     let endDate: Date;
 
@@ -64,7 +64,19 @@ function useGetEarningsByPeriod(
     );
 
     if (!filteredData) {
-      return Array(24).fill(0);
+      switch (period) {
+        case "24hrs":
+          return Array(24).fill(0);
+        case "7d":
+          return Array(7).fill(0);
+        case "30d":
+          return Array(30).fill(0);
+        case "1y":
+          return Array(12).fill(0);
+        case "all":
+        default:
+          return [0];
+      }
     }
 
     const earnings: number[] = [];
@@ -171,32 +183,12 @@ function useGetEarningsByPeriod(
         break;
     }
 
-    if (earnings.length === 0) {
-      switch (period) {
-        case "24hrs":
-          return Array(24).fill(0);
-        case "7d":
-          return Array(7).fill(0);
-        case "30d":
-          return Array(30).fill(0);
-        case "1y":
-          return Array(12).fill(0);
-        case "all":
-        default:
-          return [0];
-      }
-    }
+    return earnings.length === 0
+      ? Array(earnings.length).fill(0)
+      : earnings;
+  }, [id, equipmentStateHistory, equipmentModel, period, fixedDate]);
 
-    return earnings;
-  };
-
-  const earningsArray = useMemo(
-    () => calculateEarnings(),
-    [id, equipmentStateHistory, equipmentModel, period]
-  );
-
-  if (earningsArray.length === 1) return [0, 0, 0, ...earningsArray];
-  else return earningsArray;
+  return earningsArray.length === 1 ? [0, 0, 0, ...earningsArray] : earningsArray;
 }
 
 export default useGetEarningsByPeriod;

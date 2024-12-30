@@ -297,7 +297,7 @@ function Estatisticas() {
     return <Line ref={chartRef} data={data} options={options} />;
   };
 
-  function useGetWeekDays() {
+  function GetWeekDays() {
     // Cria um objeto Date para a data 28/08/2021
     const specificDate = new Date(2021, 7, 25); // Os meses começam em 0
     const days = [
@@ -323,7 +323,7 @@ function Estatisticas() {
     setFilterDay("7d");
   }
 
-  function useGet24Hours() {
+  function Get24Hours() {
     // Hora específica
     const specificHour = new Date();
     specificHour.setHours(22, 0, 0, 0); // Define a hora para 22:00:00
@@ -346,7 +346,7 @@ function Estatisticas() {
     setFilterDay("24hrs");
   }
 
-  function useGetMonth() {
+  function GetMonth() {
     // Cria um objeto Date para a data específica
     const specificDate = new Date(2021, 7, 28); // 28 de agosto de 2021
 
@@ -370,7 +370,7 @@ function Estatisticas() {
     setFilterDay("30d");
   }
 
-  function useGetYear() {
+  function GetYear() {
     // Cria um objeto Date para a data específica
     const specificDate = new Date(2021, 7, 28); // 28 de agosto de 2021
 
@@ -408,7 +408,7 @@ function Estatisticas() {
     setFilterDay("1y");
   }
 
-  function useGetYears() {
+  function GetYears() {
     // Cria um objeto Date para a data específica
     const specificDate = new Date(2021, 7, 28); // 28 de agosto de 2021
 
@@ -438,7 +438,7 @@ function Estatisticas() {
           <ul className={styles.chart_bar_ul}>
             <li
               className={styles.li}
-              onClick={() => useGetYears()}
+              onClick={() => GetYears()}
               style={{
                 borderRight: "0px",
                 borderTopLeftRadius: "10px",
@@ -449,28 +449,28 @@ function Estatisticas() {
             </li>
             <li
               className={styles.li}
-              onClick={() => useGetYear()}
+              onClick={() => GetYear()}
               style={{ borderRight: "0px" }}
             >
               1 Ano
             </li>
             <li
               className={styles.li}
-              onClick={() => useGetMonth()}
+              onClick={() => GetMonth()}
               style={{ borderRight: "0px" }}
             >
               30 Dias
             </li>
             <li
               className={styles.li}
-              onClick={() => useGetWeekDays()}
+              onClick={() => GetWeekDays()}
               style={{ borderRight: "0px" }}
             >
               7 Dias
             </li>
             <li
               className={styles.li}
-              onClick={() => useGet24Hours()}
+              onClick={() => Get24Hours()}
               style={{
                 borderTopRightRadius: "10px",
                 borderBottomRightRadius: "10px",
