@@ -142,7 +142,7 @@ function HistoricoMap() {
                 className={styles.li}
                 style={{
                   border: "#5f66982f solid 2px",
-                  WebkitBorderTopLeftRadius: "25px",
+                  WebkitBorderTopLeftRadius: "10px",
                 }}
                 onClick={() => AddAllPositions()}
               >
@@ -170,7 +170,7 @@ function HistoricoMap() {
               </li>
               <li
                 className={styles.li}
-                style={{ WebkitBorderTopRightRadius: "25px" }}
+                style={{ WebkitBorderTopRightRadius: "10px" }}
                 onClick={() => AddPositionsInLastDate(1)}
               >
                 24 Horas
@@ -204,6 +204,7 @@ function HistoricoMap() {
               src={pin}
               width={16}
               height={22}
+              alt="Rota Final"
               style={{ filter: "hue-rotate(150deg)" }}
             />
           </p>
@@ -213,11 +214,12 @@ function HistoricoMap() {
               src={pin}
               width={16}
               height={22}
+              alt="Rota Inicial"
               style={{ filter: "hue-rotate(50deg)" }}
             />
           </p>
           <p className={styles.p}>
-            Rotas: <Image src={pin} width={16} height={22} />
+            Rotas: <Image src={pin} alt="Rotas" width={16} height={22} />
           </p>
         </article>
         <MapContainer
