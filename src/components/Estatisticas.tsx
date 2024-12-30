@@ -292,7 +292,7 @@ function Estatisticas() {
         chartInstance.data.datasets[0].borderColor = gradient;
         chartInstance.update();
       }
-    }, [labels]);
+    }, []);
 
     return <Line ref={chartRef} data={data} options={options} />;
   };

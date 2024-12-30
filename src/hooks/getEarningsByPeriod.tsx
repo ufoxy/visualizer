@@ -183,12 +183,12 @@ function useGetEarningsByPeriod(
         break;
     }
 
-    return earnings.length === 0
-      ? Array(earnings.length).fill(0)
-      : earnings;
+    return earnings.length === 0 ? Array(earnings.length).fill(0) : earnings;
   }, [id, equipmentStateHistory, equipmentModel, period, fixedDate]);
 
-  return earningsArray.length === 1 ? [0, 0, 0, ...earningsArray] : earningsArray;
+  return earningsArray.length === 1
+    ? [0, 0, 0, ...earningsArray]
+    : earningsArray;
 }
 
 export default useGetEarningsByPeriod;

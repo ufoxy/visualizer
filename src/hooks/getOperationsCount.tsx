@@ -28,7 +28,7 @@ function useGetOperationCounts(
   equipmentStateHistory: EquipmentStateHistory[],
   period: Period
 ): OperationCounts {
-  const fixedDate = new Date(2021, 1, 28, 22);
+  const fixedDate = useMemo(() => new Date(2021, 1, 28, 22), []);
 
   const operationCounts = useMemo(() => {
     const filteredData = equipmentStateHistory.find(
