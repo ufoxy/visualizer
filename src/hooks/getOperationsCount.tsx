@@ -36,7 +36,11 @@ function useGetOperationCounts(
     );
 
     if (!filteredData) {
-      return { productiveOperations: 0, idleOperations: 0, maintenanceOperations: 0 };
+      return {
+        productiveOperations: 0,
+        idleOperations: 0,
+        maintenanceOperations: 0,
+      };
     }
 
     let productiveOperations = 0;
@@ -99,12 +103,10 @@ function useGetOperationCounts(
     };
   };
 
-  const operationCounts = useMemo(() => calculateOperationCounts(), [
-    id,
-    equipmentStateHistory,
-    equipmentStates,
-    period,
-  ]);
+  const operationCounts = useMemo(
+    () => calculateOperationCounts(),
+    [id, equipmentStateHistory, equipmentStates, period]
+  );
 
   return operationCounts;
 }

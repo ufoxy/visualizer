@@ -47,11 +47,13 @@ export async function getStaticProps() {
   };
 }
 
-const Produto: NextPage = ({ equipment,
+const Produto: NextPage = ({
+  equipment,
   equipmentModel,
   equipmentPositionHistory,
   equipmentStateHistory,
-  equipmentState }: any) => {
+  equipmentState,
+}: any) => {
   const path = "";
   const [filteredEquipment, setFilteredEquipment] = useState([]);
   function searchFilter(filterValue: string) {

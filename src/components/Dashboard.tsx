@@ -37,7 +37,7 @@ function Dashboard() {
     equipment,
     equipmentModel,
     equipmentStateHistory,
-    '24hrs'
+    "24hrs"
   ).replace(".", ",");
   // Percentual de produtividade usando a fórmula a seguir: (Total de operações / 24) * 100
   const earnings = useGetEarningCalculatorById(
@@ -45,7 +45,7 @@ function Dashboard() {
     equipmentModel,
     equipmentStateHistory,
     equipment,
-    '24hrs'
+    "24hrs"
   )
     .toFixed(2)
     .replace(".", ",");
