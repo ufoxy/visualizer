@@ -63,8 +63,6 @@
   cursor: pointer;
 }
 
-
-
 .earnings_div {
   display: flex;
   justify-content: space-between;
@@ -162,7 +160,7 @@
   flex-direction: column;
 
   background-color: #2b2e44;
-  padding: 10px 25px 15px 25px;
+  padding: 10px 25px 35px 25px;
   min-width: 46%;
   min-height: 450px;
   margin: 0 20px;
@@ -275,17 +273,17 @@
 
   .doughnut_chart_div {
     justify-content: space-between;
-    min-height: 400px;
+    min-height: 300px;
     padding-bottom: 60px;
   }
 
   .earnings_div {
     justify-content: space-evenly;
-    min-height: 235px;
+    min-height: 200px;
   }
 
   .doughnut_chart_div .h2 {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .doughnut_chart_div .doughnut_chart {
@@ -294,7 +292,49 @@
   }
 
   .earnings_div .h2 {
-    font-size: 18px;
+    font-size: 20px;
+  }
+
+  .earnings_div .h3 {
+    font-size: 3.5rem;
+  }
+
+  .earnings_div .small {
+    font-size: 3.5rem;
+  }
+
+  .earnings_percentage_div .h2 {
+    font-size: 20px;
+  }
+
+  .earnings_percentage_div .h3 {
+    font-size: 3.5rem;
+  }
+
+  .earnings_percentage_div .small {
+    font-size: 3.5rem;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .doughnut_chart_div {
+    padding-bottom: 35px;
+  }
+
+  .earnings_div .h3 {
+    font-size: 2.9rem;
+  }
+
+  .earnings_div .small {
+    font-size: 2.9rem;
+  }
+
+  .earnings_percentage_div .h3 {
+    font-size: 2.9rem;
+  }
+
+  .earnings_percentage_div .small {
+    font-size: 2.9rem;
   }
 }
 
@@ -303,11 +343,31 @@
     font-size: 10px;
   }
 
+  .chart_bar_div {
+    min-width: 440px;
+  }
+
+  .doughnut_chart_div {
+    min-width: 250px;
+    padding-bottom: 80px;
+  }
+
+  .doughnut_chart_div .doughnut_chart {
+    min-width: 200px;
+    min-height: 200px;
+    width: 220px;
+    height: 220px;
+  }
+
   .doughnut_chart_div .h2 {
     font-size: 15px;
   }
 
   .earnings_div .h2 {
+    font-size: 15px;
+  }
+
+  .earnings_percentage_div .h2 {
     font-size: 15px;
   }
 }
