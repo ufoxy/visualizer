@@ -1,15 +1,153 @@
 .section {
-    width: 100%;
-    height: 100vh;
-    background-color: #282A37;
-    padding: 20px;
-    font-family: 'poppins', sans-serif;
-    font-size: 16px;
+  width: 100%;
+  height: 100vh;
+  background-color: #282a37;
+  padding: 20px;
+  font-family: "poppins", sans-serif;
+  font-size: 16px;
+}
+
+.article {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.main_card {
+  background-color: #2b2e44;
+  color: #fff;
+  height: 270px;
+  min-width: 270px;
+  padding: 20px;
+  margin: 0 20px;
+  border: #5f66982f solid 2px;
+  .h1 {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 15px;
+    padding: 0 0 15px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #585f88;
+  }
+  .h2 {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 0 2px 0;
+  }
+  .p {
+    padding: 2px 0;
+  }
+}
+
+.operationRequirements_card {
+  background-color: #2b2e44;
+  color: #fff;
+  height: 270px;
+  min-width: 550px;
+  padding: 20px;
+  margin: 0 20px;
+  border: #5f66982f solid 2px;
+
+  .h1 {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 15px;
+    padding: 0 0 15px 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #585f88;
+  }
+  .h2 {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 0 2px 0;
+  }
+  .p {
+    padding: 2px 0;
+  }
+}
+
+.performance_card {
+  background-color: #2b2e44;
+  color: #fff;
+  height: 270px;
+  width: 450px;
+  padding: 20px;
+  margin: 0 20px;
+  border: #5f66982f solid 2px;
+
+  .h1 {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 15px;
+    padding: 0 0 15px 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #585f88;
+  }
+  .h2 {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 0 2px 0;
+  }
+  .p {
+    padding: 2px 0;
+  }
+}
+
+.use_card {
+  background-color: #2b2e44;
+  color: #fff;
+  height: 270px;
+  width: 100%;
+  padding: 20px;
+  margin: 0 20px;
+  border: #5f66982f solid 2px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  .technicalSpecifications_card {
+    width: 50%;
+    border-right: 1px solid #585f88;
+    padding-right: 20px;
+  }
+
+  .safety_card {
+    width: 50%;
+    padding-left: 10px;
+  }
+
+  .h1 {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 15px;
+    padding: 0 0 15px 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #585f88;
+  }
+  .h2 {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 0 2px 0;
+  }
+  .p {
+    padding: 2px 0;
+  }
 }
 
 @media (max-width: 940px) {
-    .section {
-      display: none;
-    }
+  .section {
+    display: none;
   }
-  
+}
