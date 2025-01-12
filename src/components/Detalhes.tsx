@@ -47,7 +47,7 @@ function Detalhes() {
                 Aplicações:
               </span>{" "}
               {details?.description.applications.map((e) => (
-                <BlueLabel children={e} key={e} />
+                <BlueLabel key={e}>{e}</BlueLabel>
               ))}
             </p>
           </div>
