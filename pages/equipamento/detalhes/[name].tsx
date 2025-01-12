@@ -6,6 +6,7 @@ import Detalhes from "../../../src/components/Detalhes";
 import MenuLateralContext from "../../../src/common/contexts/Menu-lateral";
 import Head from "next/head";
 import SizeBlock from "../../../src/components/Size-block";
+import DetailsContext from "../../../src/common/contexts/Details";
 
 export async function getStaticPaths() {
   return {
@@ -19,14 +20,28 @@ export async function getStaticProps() {
     .get("https://visualizer-blue.vercel.app/api/equipment/")
     .then((e) => e.data);
 
+  const equipmentDetails = await axios
+    .get("https://visualizer-blue.vercel.app/api/equipmentDetails/")
+    .then((e) => e.data);
+
+  const equipmentModel = await axios
+    .get("https://visualizer-blue.vercel.app/api/equipmentModel/")
+    .then((e) => e.data);
+
   return {
     props: {
       equipment,
+      equipmentDetails,
+      equipmentModel,
     },
   };
 }
 
-const Produto: NextPage = ({ equipment }: any) => {
+const Produto: NextPage = ({
+  equipment,
+  equipmentDetails,
+  equipmentModel,
+}: any) => {
   const path = "";
   const [filteredEquipment, setFilteredEquipment] = useState([]);
   function searchFilter(filterValue: string) {
@@ -58,7 +73,11 @@ const Produto: NextPage = ({ equipment }: any) => {
         >
           <MenuLateral />
         </MenuLateralContext.Provider>
-        <Detalhes />
+        <DetailsContext.Provider
+          value={{ equipment, equipmentDetails, equipmentModel }}
+        >
+          <Detalhes />
+        </DetailsContext.Provider>
       </div>
     </>
   );

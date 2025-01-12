@@ -1,0 +1,152 @@
+[
+    {
+        "id": "a3540227-2f0e-4362-9517-92f41dabbfdf",
+        "name": "Caminhão de Carga",
+        "description": {
+            "function": "Transporte de materiais pesados ou volumosos.",
+            "applications": ["Logística", "Construção civil", "Movimentação de insumos"]
+        },
+        "technicalSpecifications": {
+            "capacity": "15 toneladas",
+            "dimensions": "8m (comprimento) x 2.5m (largura) x 3.5m (altura)",
+            "fuelConsumption": "5 km/l",
+            "operationSpeed": "90 km/h (velocidade máxima)"
+        },
+        "operationRequirements": {
+            "idealConditions": "Estradas pavimentadas ou terrenos estáveis.",
+            "operatorSkill": "Certificado em condução de veículos pesados.",
+            "compatibility": "Pode ser equipado com reboques ou carrocerias específicas."
+        },
+        "maintenance": {
+            "recommendedTasks": [
+                "Verificar o sistema de freios semanalmente.",
+                "Inspecionar pneus e suspensão a cada 500 horas.",
+                "Trocar óleo do motor e filtros a cada 250 horas."
+            ],
+            "wearParts": ["Pneus", "Pastilhas de freio", "Filtro de óleo"]
+        },
+        "performanceData": {
+            "productivity": "Cerca de 100 toneladas transportadas por dia.",
+            "efficiency": "Eficiente para viagens de média e longa distância.",
+            "operationalCost": "R$ 80/hora (combustível e desgaste)."
+        },
+        "safety": {
+            "requiredEquipment": ["Capacete", "Luvas", "Cintos de segurança"],
+            "associatedRisks": "Capotamento, sobrecarga e falhas mecânicas.",
+            "regulations": "Norma NR-12 para transporte seguro."
+        },
+        "economicData": {
+            "lifespan": "15 anos de uso regular.",
+            "marketValue": "R$ 300.000 a R$ 500.000.",
+            "roi": "Alta, dependendo do volume de operações."
+        },
+        "useCases": {
+            "examples": ["Entrega de materiais em obras", "Logística de grandes indústrias"],
+            "customerFeedback": ["'Ótima capacidade e baixo custo operacional!' - Cliente A"]
+        },
+        "support": {
+            "technicalAssistance": "Suporte 24/7 pelo telefone 0800-123-456.",
+            "contact": "comercial@empresa.com"
+        }
+    },
+    {
+        "id": "a4b0c114-acd8-4151-9449-7d12ab9bf40f",
+        "name": "Harvester",
+        "description": {
+            "function": "Colheita de agrícolas em grande escala.",
+            "applications": ["Agricultura", "Colheitas de soja, milho e trigo"]
+        },
+        "technicalSpecifications": {
+            "capacity": "50 hectares/dia",
+            "dimensions": "10m (comprimento) x 3m (largura) x 4m (altura)",
+            "fuelConsumption": "25 litros/hora",
+            "operationSpeed": "10 km/h (em operação)"
+        },
+        "operationRequirements": {
+            "idealConditions": "Terrenos planos e campos abertos.",
+            "operatorSkill": "Experiência em operação agrícola.",
+            "compatibility": "Pode usar cabeçotes intercambiáveis para diferentes culturas."
+        },
+        "maintenance": {
+            "recommendedTasks": [
+                "Limpeza das lâminas de corte após cada operação.",
+                "Verificação dos rolamentos e correias mensalmente.",
+                "Substituição de peças desgastadas a cada 1.500 horas."
+            ],
+            "wearParts": ["Lâminas", "Correias", "Rolamentos"]
+        },
+        "performanceData": {
+            "productivity": "50 hectares/dia.",
+            "efficiency": "Reduz o tempo de colheita em até 70%.",
+            "operationalCost": "R$ 200/hora (combustível e desgaste)."
+        },
+        "safety": {
+            "requiredEquipment": ["Protetores auriculares", "Óculos de segurança"],
+            "associatedRisks": "Engasgamento das lâminas, falhas no sistema hidráulico.",
+            "regulations": "Conformidade com normas ISO agrícolas."
+        },
+        "economicData": {
+            "lifespan": "10 anos de uso intenso.",
+            "marketValue": "R$ 800.000 a R$ 1.200.000.",
+            "roi": "Muito alta para grandes propriedades."
+        },
+        "useCases": {
+            "examples": ["Colheita de soja em grandes fazendas", "Operações de trigo no sul do Brasil"],
+            "customerFeedback": ["'Uma máquina indispensável para alta produtividade.' - Cliente B"]
+        },
+        "support": {
+            "technicalAssistance": "Central de suporte: 0800-789-101.",
+            "contact": "suporte@empresa.com"
+        }
+    },
+    {
+        "id": "9c3d009e-0d42-4a6e-9036-193e9bca3199",
+        "name": "Garra Traçadora",
+        "description": {
+            "function": "Movimentação e corte de toras de madeira.",
+            "applications": ["Indústria florestal", "Manejo sustentável de árvores"]
+        },
+        "technicalSpecifications": {
+            "capacity": "3 toneladas",
+            "dimensions": "2.5m (largura) x 1.8m (altura)",
+            "fuelConsumption": "10 litros/hora",
+            "operationSpeed": "360° de rotação contínua"
+        },
+        "operationRequirements": {
+            "idealConditions": "Áreas florestais e terrenos irregulares.",
+            "operatorSkill": "Treinamento em máquinas florestais.",
+            "compatibility": "Compatível com diversos modelos de carregadeiras."
+        },
+        "maintenance": {
+            "recommendedTasks": [
+                "Lubrificação dos pivôs e garras a cada 100 horas.",
+                "Inspeção do sistema hidráulico semanalmente.",
+                "Substituição de mangueiras desgastadas imediatamente."
+            ],
+            "wearParts": ["Mangueiras hidráulicas", "Garras", "Pinos de fixação"]
+        },
+        "performanceData": {
+            "productivity": "20 toras por hora.",
+            "efficiency": "Alta eficiência em terrenos florestais.",
+            "operationalCost": "R$ 100/hora (combustível e desgaste)."
+        },
+        "safety": {
+            "requiredEquipment": ["Luvas resistentes", "Capacete", "Botas de segurança"],
+            "associatedRisks": "Queda de toras, falhas no giro das garras.",
+            "regulations": "Certificação NR-12 para segurança florestal."
+        },
+        "economicData": {
+            "lifespan": "12 anos de uso contínuo.",
+            "marketValue": "R$ 200.000 a R$ 400.000.",
+            "roi": "Alta em operações florestais."
+        },
+        "useCases": {
+            "examples": ["Carregamento de toras para serrarias", "Organização de pilhas de madeira em campo"],
+            "customerFeedback": ["'Facilita muito a movimentação em terrenos irregulares.' - Cliente C"]
+        },
+        "support": {
+            "technicalAssistance": "Atendimento técnico: 0800-456-789.",
+            "contact": "assistencia@empresa.com"
+        }
+    }
+]
