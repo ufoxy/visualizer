@@ -90,7 +90,8 @@ function Detalhes() {
           <div className={styles.use_card}>
             <div className={styles.technicalSpecifications_card}>
               <h1 className={styles.h1}>
-                <IoBuildOutline className={styles.ico} /> Especificações Técnicas{" "}
+                <IoBuildOutline className={styles.ico} /> Especificações
+                Técnicas{" "}
               </h1>
               <p className={styles.p}>
                 <span style={{ fontWeight: "600" }}>Capacidade:</span>{" "}

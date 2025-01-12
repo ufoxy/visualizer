@@ -21,7 +21,7 @@ export async function getStaticProps() {
     .then((e) => e.data);
 
   const equipmentDetails = await axios
-    .get("http://localhost:3000/api/equipmentDetails/")
+    .get("https://visualizer-blue.vercel.app/api/equipmentDetails/")
     .then((e) => e.data);
 
   const equipmentModel = await axios
