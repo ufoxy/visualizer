@@ -5,6 +5,20 @@
   padding: 20px;
   font-family: "poppins", sans-serif;
   font-size: 16px;
+  overflow-y: scroll;
+}
+
+.section::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+.section::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.section::-webkit-scrollbar-thumb {
+  background-color: rgb(36, 36, 36);
+  border-radius: 10px;
 }
 
 .article {
@@ -16,10 +30,10 @@
 .main_card {
   background-color: #2b2e44;
   color: #fff;
-  height: 270px;
-  min-width: 270px;
+  height: 275px;
+  min-width: 385px;
   padding: 20px;
-  margin: 0 20px;
+  margin: 0 10px 0 20px;
   border: #5f66982f solid 2px;
   .h1 {
     font-size: 24px;
@@ -35,20 +49,20 @@
   .h2 {
     font-size: 18px;
     font-weight: 600;
-    padding: 0 0 2px 0;
+    padding: 0 0 5px 0;
   }
   .p {
-    padding: 2px 0;
+    padding: 0 0 3px 0;
   }
 }
 
 .operationRequirements_card {
   background-color: #2b2e44;
   color: #fff;
-  height: 270px;
-  min-width: 550px;
+  height: 275px;
+  min-width: 385px;
   padding: 20px;
-  margin: 0 20px;
+  margin: 0 20px 0 10px;
   border: #5f66982f solid 2px;
 
   .h1 {
@@ -68,7 +82,7 @@
     padding: 0 0 2px 0;
   }
   .p {
-    padding: 2px 0;
+    padding: 3px 0;
   }
 }
 
@@ -78,7 +92,7 @@
   height: 270px;
   width: 450px;
   padding: 20px;
-  margin: 0 20px;
+  margin: 0 0 0 20px;
   border: #5f66982f solid 2px;
 
   .h1 {
@@ -107,6 +121,7 @@
   color: #fff;
   height: 270px;
   width: 100%;
+  min-width: 510px;
   padding: 20px;
   margin: 0 20px;
   border: #5f66982f solid 2px;
@@ -146,8 +161,106 @@
   }
 }
 
-@media (max-width: 940px) {
-  .section {
+.ico {
+  font-size: 38px;
+}
+
+@media (max-width: 1521px) {
+  .performance_card {
+    height: 310px;
+  }
+
+  .technicalSpecifications_card .h1 {
+    height: 89.4px;
+  }
+
+  .use_card {
+    height: 310px;
+  }
+  .use_card .h1 {
+    height: 89.4px;
+  }
+}
+
+@media (max-width: 1445px) {
+  .main_card {
+    height: 300px;
+  }
+
+  .operationRequirements_card {
+    height: 300px;
+  }
+
+  .performance_card {
+    height: 330px;
+  }
+
+  .use_card {
+    height: 330px;
+  }
+
+  .ico {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 1445px) {
+  .ico {
     display: none;
   }
 }
+
+@media (max-width: 1350px) {
+
+  .performance_card {
+    height: 350px;
+  }
+
+  .use_card {
+    height: 350px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .performance_card {
+    height: 370px;
+  }
+
+  .use_card {
+    height: 370px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .main_card {
+    height: 340px;
+  }
+
+  .operationRequirements_card {
+    height: 340px;
+  }
+
+
+  .performance_card {
+    height: 390px;
+  }
+
+  .performance_card .h1 {
+    height: 89.4px;
+  }
+
+  .use_card {
+    height: 390px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .performance_card {
+    height: 400px;
+  }
+
+  .use_card {
+    height: 400px;
+  }
+}
+

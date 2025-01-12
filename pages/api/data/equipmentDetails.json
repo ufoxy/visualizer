@@ -53,7 +53,7 @@
         "id": "a4b0c114-acd8-4151-9449-7d12ab9bf40f",
         "name": "Harvester",
         "description": {
-            "function": "Colheita de culturas agrícolas em grande escala.",
+            "function": "Colheita de agrícolas em grande escala.",
             "applications": ["Agricultura", "Colheitas de soja, milho e trigo"]
         },
         "technicalSpecifications": {
