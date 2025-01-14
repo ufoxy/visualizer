@@ -1,22 +1,29 @@
 .tabs_div {
-    border-bottom: 2px solid #5f66982f;
-    margin: 20px 25px;
-    margin-bottom: 35px;
-    min-width: 560px;
-  }
-  
+  border-bottom: 2px solid #5f66982f;
+  margin: 20px 25px;
+  margin-bottom: 35px;
+  min-width: 560px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .nav_ul {
   display: flex;
   flex-direction: row;
   gap: 40px;
   list-style: none;
   padding: 8px 30px;
-  .li{
+  .li {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
-    border:none;
+    border: none;
     position: relative;
     color: #ffffff;
     cursor: pointer;
@@ -26,27 +33,36 @@
     color: rgb(59, 186, 255);
     transition: color 500ms;
   }
-  .li::after{
-    content: '';
+  .li::after {
+    content: "";
     position: absolute;
     width: 0px;
     border-radius: 50px;
     height: 3.5px;
     left: 50%;
-    bottom:-40%;
+    bottom: -40%;
     background-image: radial-gradient(
       100% 100% at 100% 0,
       #5adaff 0,
       #5468ff 100%
     );
-    transition: all ease-in-out .2s;
+    transition: all ease-in-out 0.2s;
   }
-  .li:hover::after{
+  .li:hover::after {
     width: 100%;
     left: 0;
   }
 }
-  
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
 @media (max-width: 995px) {
   .nav_ul {
     padding: 8px 10px;
