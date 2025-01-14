@@ -1,11 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import styles from "../../../styles/components/Tabs/Tabs.module.scss";
 import { useRouter } from "next/router";
 import { RiToolsFill } from "react-icons/ri";
 import { RiRoadMapLine } from "react-icons/ri";
 import { BiMessageSquareDetail } from "react-icons/bi";
 import { AiOutlineLineChart } from "react-icons/ai";
+import RoundProfilePicture from "../Round-profile-picture/Round-profile-picture";
+import styles from "../../../styles/components/Tabs/Tabs.module.scss";
+import img from "../../../public/profile.png";
 
 function Tabs() {
   const { query } = useRouter();
@@ -13,7 +15,7 @@ function Tabs() {
   return (
     <React.Fragment>
       <article className={styles.tabs_div}>
-        <nav>
+        <nav className={styles.nav}>
           <ul className={styles.nav_ul}>
             <li className={styles.li}>
               <RiToolsFill fontSize={20.5} />
@@ -44,6 +46,9 @@ function Tabs() {
               </Link>
             </li>
           </ul>
+          <div className={styles.profile}>
+            <RoundProfilePicture imageSrc={img} altText={"Perfil"} />
+          </div>
         </nav>
       </article>
     </React.Fragment>
