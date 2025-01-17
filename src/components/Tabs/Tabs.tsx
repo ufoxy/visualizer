@@ -5,9 +5,8 @@ import { RiToolsFill } from "react-icons/ri";
 import { RiRoadMapLine } from "react-icons/ri";
 import { BiMessageSquareDetail } from "react-icons/bi";
 import { AiOutlineLineChart } from "react-icons/ai";
-import RoundProfilePicture from "../Round-profile-picture/Round-profile-picture";
+import { CgProfile } from "react-icons/cg";
 import styles from "../../../styles/components/Tabs/Tabs.module.scss";
-import img from "../../../public/profile.png";
 
 function Tabs() {
   const { query } = useRouter();
@@ -47,7 +46,7 @@ function Tabs() {
             </li>
           </ul>
           <div className={styles.profile}>
-            <RoundProfilePicture imageSrc={img} altText={"Perfil"} />
+            <CgProfile fontSize={30} className={styles.icon} />
           </div>
         </nav>
       </article>
