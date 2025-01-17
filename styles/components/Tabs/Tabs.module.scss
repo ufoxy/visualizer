@@ -58,9 +58,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 15px;
+  padding: 8px 15px;
   overflow: hidden;
+}
+
+.icon:hover {
   cursor: pointer;
+  color: #3abaff;
+  transition: all ease-in-out 0.2s;
 }
 
 @media (max-width: 995px) {
