@@ -95,3 +95,4 @@ function useEarningsTrend(
 }
 
 export default useEarningsTrend;
+

@@ -67,3 +67,4 @@ function useGetEquipmentDetails(
 }
 
 export default useGetEquipmentDetails;
+
